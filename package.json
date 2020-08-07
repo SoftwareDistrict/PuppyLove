@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
-    "build": "webpack --mode production --watch"
+    "start": "webpack --mode production --watch && nodemon server/index.js"
   },
   "repository": {
     "type": "git",
