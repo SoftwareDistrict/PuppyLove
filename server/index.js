@@ -4,7 +4,7 @@ const path = require('path');
 const pool = require('./db/db');
 
 const app = express();
-const { PORT } = process.env;
+const PORT = process.env.PORT || 3000;
 const CLIENT_PATH = path.join(__dirname, '../client/dist');
 
 app.use(express.static(CLIENT_PATH));
