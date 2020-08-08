@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: rgb(165, 134, 199);
+}
+#settings {
+  position: absolute;
+  top: 50px;
+  font-size: xx-large;
+  margin-left: 60px;
+  text-decoration: underline;
+}
+#pro {
+  position: absolute;
+  top: 120px;
+  margin-top: 40px;
+  font-size: x-large;
+  margin-left: 60px;
+}
+#friends {
+  position: absolute;
+  margin-top: 40px;
+  top: 180px;
+  font-size: x-large;
+  margin-left: 60px;
+}
+#chats {
+  position: absolute;
+  margin-top: 40px;
+  top: 240px;
+  font-size: x-large;
+  margin-left: 60px;
+}
+#loc {
+  position: absolute;
+  margin-top: 40px;
+  top: 300px;
+  font-size: x-large;
+  margin-left: 60px;
+}
+#no {
+  margin-left: 520px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 40px;
+  background-color: rgb(126, 20, 46);
+  border-color: rgb(126, 20, 46);
+  border-width: thin;
+  border-radius: 20px;
+}
+#view {
+  font-size: 40px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+#yes {
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 40px;
+  background-color: rgb(20, 126, 52);
+  border-color: rgb(20, 126, 52);
+  border-width: thin;
+  border-radius: 20px;
+}
+
+img {
+  margin-left: 580px;
+  height: 360px;
+  width: 380px;
+  border-radius: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-left: 480px;
+  margin-right: 480px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  font-size: 100px;
+  color: rgb(96, 148, 201);
+  border-width: medium;
+  border-color: rgb(96, 148, 201);
+  border-radius: 20px;
+}
+h2 {
+  font-size: 70px;
+  text-align: center;
+}
