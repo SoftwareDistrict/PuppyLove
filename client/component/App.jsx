@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import Choice from './Choice.jsx';
 
-class App extends Component{
-    constructor(){
-        super();
-    }
-   render(){
-      return(
-         <div>
-            <h1>Hello World</h1>
-         </div>
-      );
-   }
+function App() {
+   const [ hiya ] = useState('hiya');
+   return(
+      <div>
+         <Choice hiya={hiya}/>
+      </div>
+   );
 }
 export default App;
