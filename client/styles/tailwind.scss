@@ -2,44 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+.App {
   background-color: rgb(165, 134, 199);
+  transition: margin-left .5s;
+  padding: 20px;
+  z-index: -1;
 }
+.navbar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(50, 49, 66);
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
+
 #settings {
   position: absolute;
-  top: 50px;
+  top: 20px;
   font-size: xx-large;
-  margin-left: 60px;
+  margin-left: 20px;
   text-decoration: underline;
+  color: #0090B2;
 }
+#settings:hover {
+  color: #FF7A00;
+}
+#settings:active {
+    color: #B25500;
+}
+
+.nav li {
+  margin-top: 40px;
+  font-size: x-large;
+  margin-left: 20px;
+  color: #0090B2;
+  transition: 0.3s;
+}
+.nav li:hover {
+  color: #FF7A00;
+}
+.nav li:active {
+    color: #B25500;
+}
+
+#choice {
+  position: absolute;
+  top: 80px;
+}
+
+#log {
+  position: absolute;
+  top: 140px;
+}
+
 #pro {
   position: absolute;
-  top: 120px;
-  margin-top: 40px;
-  font-size: x-large;
-  margin-left: 60px;
+  top: 200px;
 }
-#friends {
-  position: absolute;
-  margin-top: 40px;
-  top: 180px;
-  font-size: x-large;
-  margin-left: 60px;
-}
+
 #chats {
   position: absolute;
-  margin-top: 40px;
-  top: 240px;
-  font-size: x-large;
-  margin-left: 60px;
+  top: 260px;
 }
+
 #loc {
   position: absolute;
-  margin-top: 40px;
-  top: 300px;
-  font-size: x-large;
-  margin-left: 60px;
+  top: 320px;
 }
+
 #no {
   margin-left: 520px;
   padding-left: 30px;
@@ -76,7 +111,7 @@ img {
 h1 {
   text-align: center;
   margin-left: 480px;
-  margin-right: 480px;
+  margin-right: 450px;
   margin-top: 20px;
   margin-bottom: 20px;
   padding-left: 20px;
