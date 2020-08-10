@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 function Choice({ user, dogs }) {
 
-  const [ title, setTitle ] = useState(dogs[0].name);
-  const [ pic, setPic ] = useState(dogs[0].image);
-  const [ kind, setKind ] = useState(dogs[0].breed);
-  const [ old, setOld ] = useState(dogs[0].age);
+  const [ title, setTitle ] = useState(dogs[3].name);
+  const [ pic, setPic ] = useState(dogs[3].image);
+  const [ kind, setKind ] = useState(dogs[3].breed);
+  const [ old, setOld ] = useState(dogs[3].age);
 
   const nextDog = () => {
     for(let d = 0; d < dogs.length + 1; d++) {
@@ -20,7 +20,6 @@ function Choice({ user, dogs }) {
 
   return (
     <div>
-      <h1>PuppyLove!</h1>
       <div id='choice-box'>
         <img src={pic}/>
         <div id='title'>{title}</div>

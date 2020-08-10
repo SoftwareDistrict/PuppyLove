@@ -9,8 +9,8 @@ function Sidebar({ user, dog }) {
 
   return (
     <div id="mySidenav" className="navbar">
-      <button id='settings' onClick={close}>Menu</button>
       <h3>PuppyLove!</h3>
+      <button id='settings' onClick={close}>Menu</button>
       {dog ?
         (
           <ul className="nav">

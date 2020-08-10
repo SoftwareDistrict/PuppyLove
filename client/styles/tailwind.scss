@@ -23,7 +23,7 @@
 
 #settings {
   position: absolute;
-  top: 20px;
+  top: 60px;
   font-size: xx-large;
   margin-left: 20px;
   text-decoration: underline;
@@ -116,21 +116,21 @@
 }
 #title {
   position: absolute;
-  top: 500px;
+  top: 300px;
   left: 400px;
   font-size: 50px;
   color: rgb(255, 255, 255);
 }
 #breed {
   position: absolute;
-  top: 580px;
+  top: 380px;
   left: 405px;
   font-size: 20px;
   color: rgb(255, 255, 255);
 }
 #age {
   position: absolute;
-  top: 620px;
+  top: 420px;
   left: 405px;
   font-size: 20px;
   color: rgb(255, 255, 255);
@@ -158,9 +158,30 @@ h2 {
 }
 h3 {
   position: absolute;
-  top: 60px;
+  top: 0px;
+  padding-right: 100px;
+  padding-left: 50px;
   font-size: xx-large;
-  margin-left: 20px;
   text-decoration: underline;
+  background-color: #0090B2;
+  color: rgb(50, 49, 66)
+}
+
+#cancel {
+  font-size: large;
+  background-color: rgb(50, 49, 66);
   color: #0090B2;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+#login {
+  font-size: large;
+  background-color: #0090B2;
+  color: rgb(50, 49, 66);
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 690px;
+  border-radius: 5px;
 }
