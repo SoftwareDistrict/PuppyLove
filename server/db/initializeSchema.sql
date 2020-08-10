@@ -66,9 +66,9 @@ CREATE TABLE IF NOT EXISTS fav_location_joint(`
 
 /* 
 To use this file run:
-	mysql -u root <initializeSchema.sql 
+	mysql -u root <~path to initializeSchema.sql~ 
 	OR 
-	mariadb -u root <initializeSchema.sql
+	mariadb -u root <~path to initializeSchema.sql~
 You should run these commands only when:
 	1. You first pull repo from upstream
 	2. You make a change in the schemas 
