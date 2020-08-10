@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS puppy_love;
 
 CREATE DATABASE puppy_love;
 
-SELECT DATABASE puppy_love;
+USE puppy_love;
 
 CREATE TABLE IF NOT EXISTS user(`
 	id INT NOT NULL AUTO_INCREMENT,
