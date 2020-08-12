@@ -1,0 +1,72 @@
+[
+    {
+       "id": "1",
+       "name": "Chester",
+       "breed": "Golden Lab",
+       "weight": "`${12} lbs`",
+       "age": "`${6} years`",
+       "fixed": "true",
+       "description": "Just a baby.",
+       "image": "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg"
+    },
+    {
+       "id": "2",
+       "name": "Alfred",
+       "breed": "Golden Lab",
+       "weight": "`${68} lbs`",
+       "age": "`${3} years`",
+       "fixed": "true",
+       "description": "Big brother.",
+       "image": "https://tinyurl.com/y2czcnb2"
+    },
+    {
+       "id": "3",
+       "name": "Jared",
+       "breed": "Pomeranian",
+       "weight": "`${19} lbs`",
+       "age": "`${4} years`",
+       "fixed": "true",
+       "description": "He is a joker.",
+       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQItDJF0FPk3zsXOxm8XHFA8wm1De8S1uPwQA&usqp=CAU"
+    },
+    {
+       "id": "4",
+       "name": "Dante",
+       "breed": "Pug",
+       "weight": "`${24} lbs`",
+       "age": "`${7} years`",
+       "fixed": "true",
+       "description": "Breathing problems.",
+       "image": "https://tinyurl.com/y3pjsd3l"
+    },
+    {
+       "id": "5",
+       "name": "Scarlet",
+       "breed": "Australian Shepherd",
+       "weight": "`${52} lbs`",
+       "age": "`${6} years`",
+       "fixed": "true",
+       "description": "Beautiful soul.",
+       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQuefDhFZpW9NljnOWYJEZsWYK4FztlxEgCEw&usqp=CAU"
+    },
+    {
+       "id": "6",
+       "name": "Mako",
+       "breed": "Dalmatian",
+       "weight": "`${47} lbs`",
+       "age": "`${2} years`",
+       "fixed": "false",
+       "description": "Majestic.",
+       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTizakGYU46I9rz6-rv0JtruPgyy89YJWJtSg&usqp=CAU"
+    },
+    {
+       "id": "7",
+       "name": "Trigger",
+       "breed": "Black Lab",
+       "weight": "`${52} lbs`",
+       "age": "`${2} years`",
+       "fixed": "true",
+       "description": "Very smart and protective, also a great tracker.",
+       "image": "https://tinyurl.com/y2ch5jcd"
+    }
+ ]
