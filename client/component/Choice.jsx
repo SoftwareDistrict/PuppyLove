@@ -1,36 +1,39 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, Route } from 'react-router-dom';
 
-function Choice({ user, dogs }) {
+function Choice({ onLike, dogs }) {
 
-  const [ title, setTitle ] = useState(dogs[3].name);
-  const [ pic, setPic ] = useState(dogs[3].image);
-  const [ kind, setKind ] = useState(dogs[3].breed);
-  const [ old, setOld ] = useState(dogs[3].age);
+  const [ index, setIndex ] = useState(0);
+  const [ dogDisplay, setDogDisplay ] = useState('');
 
-  const nextDog = () => {
-    for(let d = 0; d < dogs.length + 1; d++) {
-      const rando = Math.floor(Math.random() * d);
-      setTitle(dogs[rando].name);
-      setPic(dogs[rando].image);
-      setKind(dogs[rando].breed);
-      setOld(dogs[rando].age);
+  const dislike = () => {
+    setIndex(index + 1);
+    if (index < dogs.length) {
+      setDogDisplay(() => dogs[index]);
+    } else {
+      setDogDisplay(<div id='choice-box'><h4>Looks like you've made it through all the dogs in you're area. Please check back later.</h4></div>);
     }
+  };
+
+  const like = () => {
+    onLike('Trigger', dogDisplay.name, true)
+    .then(() => dislike())
+    .then(() => console.log('this friend was added'))
+    .catch((err) => console.error(err, 'we nope'));
   };
 
   return (
     <div>
-      <div id='choice-box'>
-        <img src={pic}/>
-        <div id='title'>{title}</div>
-        <div id='breed'>{kind}</div>
-        <div id='age'>{old}</div>
+      <div>
+        {dogDisplay}
+        <button id='no' onClick={dislike}>No</button>
+        <Link to={'/dogprofile'} id='view'>View Profile</Link>
+        <button id='yes' onClick={dislike}>Yes</button>
       </div>
-      <button id='no' onClick={nextDog}>No</button>
-      <Link to={'/dogprofile'} id='view'>View Profile</Link>
-      <button id='yes' onClick={nextDog}>Yes</button>
+        {/* <Route path={`${match.path}/:id`} /> */}
     </div>
   );
 };
 
 export default Choice;
+ 
