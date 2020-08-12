@@ -1,0 +1,265 @@
+
+$mainColor : rgb(165, 134, 199);
+$backColor : rgb(50, 49, 66);
+$textBlue : #0090B2;
+$textBlack : rgb(32, 32, 32);
+$border : rgb(96, 148, 201);
+$yes : rgb(20, 126, 52);
+$no : rgb(126, 20, 46);
+$active : #B25500;
+$hover: #FF7A00;
+
+.App {
+  background-color: $mainColor;
+  transition: margin-left .5s;
+  padding: 20px;
+  z-index: -1;
+  #settings {
+    position: absolute;
+    top: 20px;
+    font-size: xx-large;
+    margin-left: 20px;
+    text-decoration: underline;
+    color: rgb(230, 222, 222);
+    border: none;
+    background: none;
+    cursor: pointer;
+    &:hover {
+      color: $hover;
+    }
+    &:active {
+        color: $active;
+    }
+  }
+}
+
+h1 {
+  text-align: center;
+  margin-left: 480px;
+  margin-right: 450px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  font-size: 100px;
+  color: $border;
+  border-width: medium;
+  border-color: $border;
+  border-radius: 20px;
+}
+h2 {
+  font-size: 80px;
+  text-align: center;
+  color: $backColor;
+}
+h3 {
+  padding-right: 100px;
+  padding-left: 50px;
+  font-size: xx-large;
+  text-decoration: underline;
+  color: $backColor;
+}
+h4 {
+  text-align: center;
+  color: $textBlue;
+  font-size: 70px;
+}
+
+.navbar {
+  height: 1000px;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: $backColor;
+  overflow-x: hidden;
+  transition: 0.5s;
+  #settings {
+    position: absolute;
+    top: 60px;
+    font-size: xx-large;
+    margin-left: 20px;
+    text-decoration: underline;
+    color: $textBlue;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    &:hover {
+      color: $hover;
+    }
+    &:active {
+        color: $active;
+    }
+  }
+  .nav {
+    #choice {
+      top: 100px;
+      margin-top: 40px;
+      font-size: x-large;
+      margin-left: 20px;
+      color: $textBlue;
+      transition: 0.3s;
+      position: absolute;
+      text-decoration: none;
+      &:hover {
+        color: $hover;
+      }
+      &:active {
+          color: $active;
+      }
+    }
+    #log {
+      top: 160px;
+      margin-top: 40px;
+      font-size: x-large;
+      margin-left: 20px;
+      color: $textBlue;
+      transition: 0.3s;
+      position: absolute;
+      text-decoration: none;
+      &:hover {
+        color: $hover;
+      }
+      &:active {
+          color: $active;
+      }
+    }
+    #pro {
+      top: 220px;
+      margin-top: 40px;
+      font-size: x-large;
+      margin-left: 20px;
+      color: $textBlue;
+      transition: 0.3s;
+      position: absolute;
+      text-decoration: none;
+      &:hover {
+        color: $hover;
+      }
+      &:active {
+          color: $active;
+      }
+    }
+    #chats {
+      top: 280px;
+      margin-top: 40px;
+      font-size: x-large;
+      margin-left: 20px;
+      color: $textBlue;
+      transition: 0.3s;
+      position: absolute;
+      text-decoration: none;
+      &:hover {
+        color: $hover;
+      }
+      &:active {
+          color: $active;
+      }
+    }
+    #loc {
+      top: 340px;
+      margin-top: 40px;
+      font-size: x-large;
+      margin-left: 20px;
+      color: $textBlue;
+      transition: 0.3s;
+      position: absolute;
+      text-decoration: none;
+      &:hover {
+        color: $hover;
+      }
+      &:active {
+          color: $active;
+      }
+    }
+  }
+}
+
+#select {
+  margin-top: 450px;
+  #no {
+    margin-left: 490px;
+    background-color: $no;
+    border-color: $no;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 40px;
+    border-width: thin;
+    border-radius: 20px;
+  }
+  #view {
+    font-size: 40px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    text-decoration: none;
+  }
+  #yes {
+    background-color: $yes;
+    border-color: $yes;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 40px;
+    border-width: thin;
+    border-radius: 20px;
+  }
+}
+
+#choice-box {
+  position: absolute;
+  width: 700px;
+  height: 400px;
+  left: 400px;
+  top: 50px;
+  border-radius: 20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  #title {
+    top: 200px;
+    left: 30px;
+    font-size: 50px;
+    position: absolute;
+    color: $textBlack;
+  }
+  #breed {
+    top: 280px;
+    left: 35px;
+    font-size: 20px;
+    position: absolute;
+    color: $textBlack;
+  }
+  #age {
+    top: 320px;
+    left: 35px;
+    font-size: 20px;
+    position: absolute;
+    color: $textBlack;
+  }
+}
+
+#log-butt {
+  #signup {
+    background-color: $backColor;
+    color: $textBlue;
+    margin-left: 10px;
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+  }
+  #login {
+    background-color: $textBlue;
+    color: $backColor;
+    margin-left: 690px;
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+  }
+}
