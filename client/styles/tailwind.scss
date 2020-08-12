@@ -76,7 +76,7 @@
 }
 
 #no {
-  margin-left: 510px;
+  margin-left: 490px;
   padding-left: 30px;
   padding-right: 30px;
   font-size: 40px;
@@ -100,40 +100,41 @@
   border-width: thin;
   border-radius: 20px;
 }
+#select {
+  margin-top: 450px;
+}
 
 #choice-box {
-  background-color: rgb(50, 49, 66);
-  margin-left: 360px;
-  margin-right: 300px;
-  margin-bottom: 20px;
+  position: absolute;
+  width: 700px;
+  height: 400px;
+  left: 400px;
+  top: 50px;
   border-radius: 20px;
-  display: flex;
-  overflow: hidden
-}
-#choice-box img {
-  min-width: 100%;
-  min-height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 }
 #title {
   position: absolute;
-  top: 300px;
-  left: 400px;
+  top: 200px;
+  left: 30px;
   font-size: 50px;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 #breed {
   position: absolute;
-  top: 380px;
-  left: 405px;
+  top: 280px;
+  left: 35px;
   font-size: 20px;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 #age {
   position: absolute;
-  top: 420px;
-  left: 405px;
+  top: 320px;
+  left: 35px;
   font-size: 20px;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
 h1 {
@@ -165,6 +166,11 @@ h3 {
   text-decoration: underline;
   background-color: #0090B2;
   color: rgb(50, 49, 66)
+}
+h4 {
+  text-align: center;
+  color: #73c0d1;
+  font-size: 70px;
 }
 
 #cancel {
