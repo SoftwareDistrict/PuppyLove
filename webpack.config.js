@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 require('dotenv').config();
 const path = require('path');
 
@@ -18,10 +19,28 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+        },
       },
       {
-        test: /\.scss$/,
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('node-sass'),
+              sassOptions: {
+                fiber: require('fibers'),
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
         use: [
           'style-loader',
           'css-loader',
