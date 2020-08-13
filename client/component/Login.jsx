@@ -5,13 +5,10 @@ import Axios from 'axios';
 function Login() {
 
   const onConfirm = () => {
-    // const restart = confirm('This should redirect to "/" Landing page.');
-    // if (restart) {
-    //   return;
-    // }
-    Axios.get('/auth/google')
-    .then(() => {console.log('Sending to google!')})
-    .catch((err) => console.error(err, 'Not sending to google'));
+    const restart = confirm('This should redirect to "/" Landing page.');
+    if (restart) {
+      return;
+    }
   };
 
   const onSignup = () => {
