@@ -4,6 +4,7 @@ const path = require('path');
 const cors = require('cors');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+const flash = require('connect-flash');
 const pool = require('./db/db.js');
 require('./passport/passport');
 // const data = require('../data.json');
@@ -33,12 +34,13 @@ app.use(cookieSession({
   keys: ['key1', 'key2'],
   secure: false,
 }));
+app.use(flash());
 // app.use(isLoggedIn());
 
 /* ============================================================================ */
 
 /* Routes====================================================================== */
-app.get('/google', passport.authenticate('google', { scope: ['profile'] }));
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
