@@ -15,7 +15,7 @@ function Sidebar({ user, users, dog, dogs, setDog }) {
         (
           <div className="nav">
             <Link to="/" id='choice'>Home</Link>
-            <Link to="/login" id='log'>Logout</Link>
+            <Link to="/login" onClick={close} id='log'>Logout</Link>
             <Link to="/myprofile" id='pro'>My Profile</Link>
             <Link to="/chats" id='chats'>Chats</Link>
             <Link to="/dogprofile" id='dog'>Profile</Link>
@@ -27,7 +27,7 @@ function Sidebar({ user, users, dog, dogs, setDog }) {
         : (
         <div className="nav">
             <Link to="/" id='choice'>Home</Link>
-            <Link to="/login" id='log'>Logout</Link>
+            <Link to="/login" onClick={close} id='log'>Logout</Link>
             <Link to="/myprofile" id='pro'>My Profile</Link>
             <Link to="/chats" id='chats'>Chats</Link>
             <Link to="/popular" id='loc'>Popular Locations</Link>

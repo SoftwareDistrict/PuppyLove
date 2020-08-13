@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "build": "webpack --mode production --watch",
-    "build:css": "postcss client/styles/tailwind.css -o client/styles/index.css"
+    "build:css": "postcss client/styles/tailwind.scss -o client/styles/index.scss"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/SoftwareDistrict/PuppyLove#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

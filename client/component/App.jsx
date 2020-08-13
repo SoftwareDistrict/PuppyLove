@@ -54,16 +54,15 @@ function App() {
       <Router>
          <Sidebar users={users} dogs={dogs} />
          <div className='App'>
-            <button id='settings' onClick={open}>Menu</button>
             <Switch>
-               <Route exact={true} path="/" render={() => (<Choice onLike={addFriend} dogs={dogs} />)} />
-               {/* <Route exact path="/login" render={() => (<Login users={users} />)} /> */}
-               <Route path="/myprofile" render={() => (<MyProfile dogs={dogs} />)} />
-               <Route exact path="/chats" render={({ match }) => (<Chats users={users} />)} />
-               <Route path="/dogprofile" render={() => (<DogProfile />)} />
-               <Route path="/friends" render={() => (<Friends dogs={dogs} />)} />
-               <Route path="/favs" render={() => (<FavLocations />)} />
-               <Route path="/popular" render={() => (<PopularLocations />)} />
+               <Route exact={true} path="/" render={() => (<Choice open={open} onLike={addFriend} dogs={dogs} />)} />
+               <Route exact path="/login" render={() => (<Login users={users} />)} />
+               <Route path="/myprofile" render={() => (<MyProfile open={open} dogs={dogs} />)} />
+               <Route exact path="/chats" render={({ match }) => (<Chats open={open} users={users} />)} />
+               <Route path="/dogprofile" render={() => (<DogProfile open={open} />)} />
+               <Route path="/friends" render={() => (<Friends open={open} dogs={dogs} />)} />
+               <Route path="/favs" render={() => (<FavLocations open={open} />)} />
+               <Route path="/popular" render={() => (<PopularLocations open={open} />)} />
             </Switch>
          </div>
       </Router>
