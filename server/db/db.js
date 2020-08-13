@@ -4,6 +4,9 @@ const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = new Sequelize('puppy_love', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
+  define: {
+    timestamps: false,
+  },
 });
 
 sequelize.authenticate()
@@ -13,27 +16,27 @@ sequelize.authenticate()
 const User = sequelize.define('User', {
   username: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   email: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: null,
   },
   cell: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   latitude: {
     type: DataTypes.DECIMAL,
-    allowNull: false,
+    allowNull: true,
   },
   longitude: {
     type: DataTypes.DECIMAL,
-    allowNull: false,
+    allowNull: true,
   },
   home_town: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   pref_breed: {
     type: DataTypes.STRING,
@@ -56,7 +59,7 @@ const User = sequelize.define('User', {
     allowNull: true,
   },
   googleId: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
 });
