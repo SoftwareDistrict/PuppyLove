@@ -32,9 +32,9 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               implementation: require('node-sass'),
-              sassOptions: {
-                fiber: require('fibers'),
-              },
+              // sassOptions: {
+              //   fiber: require('fibers'),
+              // },
             },
           },
         ],
