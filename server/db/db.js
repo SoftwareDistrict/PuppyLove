@@ -62,6 +62,10 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  acc_created: {
+    type: DataTypes.TINYINT,
+    allowNull: false,
+  },
 });
 
 const Dog = sequelize.define('Dog', {

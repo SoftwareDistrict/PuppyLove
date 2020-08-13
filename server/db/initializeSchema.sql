@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS users(
 	pref_fixed TEXT,
 	distance INT,
 	googleId TEXT NOT NULL,
+	acc_created TINYINT(1),
 	PRIMARY KEY(id)
 );
 
