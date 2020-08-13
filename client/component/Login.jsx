@@ -20,7 +20,7 @@ function Login() {
   return (
     <div>
       <h2>Login</h2>
-      <input class='input-field' type='text' style={{ width: '500px', height: '35px', fontSize: '16px', marginLeft: '340px', marginTop: '10px', marginBottom: '10px', paddingLeft: '10px' }}></input>
+      <input class='input-field' type='text' style={{ width: '500px', height: '35px', fontSize: '16px', margin: '10px 0 10px 340px', paddingLeft: '10px' }}></input>
       <div id='log-butt' style={{marginBottom: '100px'}}>
         <Link to='/' id='login' onClick={onConfirm}>Login</Link>
         <Link to='/login' id='signup' onClick={onSignup}>Signup</Link>

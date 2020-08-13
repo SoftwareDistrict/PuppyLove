@@ -36,11 +36,11 @@ function App() {
       .catch((err) => console.error(err, 'Could not get all dogs.'));
    }, []); 
 
-   // useEffect(() => {
-   //    axios.get('/users')
-   //    .then((response) => setUsers(response.data))
-   //    .catch((err) => console.error(err, 'Could not get all users.'));
-   // }, []);
+   useEffect(() => {
+      axios.get('/users')
+      .then((response) => setUsers(response.data))
+      .catch((err) => console.error(err, 'Could not get all users.'));
+   }, []);
 
    const addFriend = (name, friendName, bool) => {
       axios.post('/friends', { name, friendName, bool })
@@ -48,23 +48,21 @@ function App() {
       .catch((err) => console.error(err, 'we couldn\'t add this friend'));
    };
 
-   console.log('choices: ', dogs);
-   // console.log('users: ', users);
+   console.log('users: ', users);
 
    return (
       <Router>
          <Sidebar users={users} dogs={dogs} />
          <div className='App'>
-            <button id='settings' onClick={open}>Menu</button>
             <Switch>
-               <Route exact={true} path="/" render={() => (<Choice onLike={addFriend} dogs={dogs} />)} />
+               <Route exact={true} path="/" render={() => (<Choice open={open} onLike={addFriend} dogs={dogs} />)} />
                <Route exact path="/login" render={() => (<Login users={users} />)} />
-               <Route path="/myprofile" render={() => (<MyProfile dogs={dogs} />)} />
-               <Route path="/chats" render={() => (<Chats users={users} />)} />
-               <Route path="/dogprofile" render={() => (<DogProfile />)} />
-               <Route path="/friends" render={() => (<Friends dogs={dogs} />)} />
-               <Route path="/favs" render={() => (<FavLocations />)} />
-               <Route path="/popular" render={() => (<PopularLocations />)} />
+               <Route path="/myprofile" render={() => (<MyProfile open={open} dogs={dogs} />)} />
+               <Route exact path="/chats" render={({ match }) => (<Chats open={open} users={users} />)} />
+               <Route path="/dogprofile" render={() => (<DogProfile open={open} />)} />
+               <Route path="/friends" render={() => (<Friends open={open} dogs={dogs} />)} />
+               <Route path="/favs" render={() => (<FavLocations open={open} />)} />
+               <Route path="/popular" render={() => (<PopularLocations open={open} />)} />
             </Switch>
          </div>
       </Router>
