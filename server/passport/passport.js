@@ -24,7 +24,7 @@ passport.use(new GoogleStrategy({
       }
       let newUser = {
         googleId: profile.id,
-        email: profile.emails && profile.emails.length > 0 ? profile.emails[0].value : null
+        email: profile.emails && profile.emails.length > 0 ? profile.emails[0].value : null,
       };
       User.create(newUser)
         .then((createdUser) => {
