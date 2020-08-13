@@ -5,7 +5,7 @@ const cors = require('cors');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const pool = require('./db/db.js');
-const pass = require('./passport/passport');
+require('./passport/passport');
 // const data = require('../data.json');
 const { getUsers, getDogs, addFriend } = require('./queries.js');
 
@@ -16,13 +16,13 @@ const app = express();
 
 /* Middleware================================================================== */
 
-const isLoggedIn = (req, res, next) => {
-  if (req.user) {
-    next();
-  } else {
-    res.sendStatus(401);
-  }
-}
+// const isLoggedIn = (req, res, next) => {
+//   if (req.user) {
+//     next();
+//   } else {
+//     res.sendStatus(401);
+//   }
+// };
 app.use(express.json());
 app.use(cors());
 app.use(express.static(CLIENT_PATH));
@@ -38,8 +38,7 @@ app.use(cookieSession({
 /* ============================================================================ */
 
 /* Routes====================================================================== */
-app.get('/google',
-  passport.authenticate('google', { scope: ['profile'] }));
+app.get('/google', passport.authenticate('google', { scope: ['profile'] }));
 
 app.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
