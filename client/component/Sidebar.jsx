@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Sidebar({ user, dog }) {
+function Sidebar({ user, users, dog, dogs, setDog }) {
 
   const close = () => {
     document.getElementById("mySidenav").style.width = "0px";
@@ -13,31 +13,25 @@ function Sidebar({ user, dog }) {
       <button id='settings' onClick={close}>Menu</button>
       {dog ?
         (
-          <ul className="nav">
-            <li id='choice'><Link to="/">Home</Link></li>
-            {user ? 
-              (<li id='log' name={'Logout'}><Link to="/logout">Logout</Link></li>)
-              : (<li id='log' name={'Login'}><Link to="/logout">Login</Link></li>)
-            }
-            <li id='pro'><Link to="/myprofile">My Profile</Link></li>
-            <li id='chats'><Link to="/chats">Chats</Link></li>
-            <li id='dog'><Link to="/dogprofile">Profile</Link></li>
-            <li id='friend'><Link to="/friends">Friends</Link></li>
-            <li id='fav'><Link to="/favs">Favorite Locations</Link></li>
-            <li id='loc'><Link to="/popular">Popular Locations</Link></li>
-          </ul>
+          <div className="nav">
+            <Link to="/" id='choice'>Home</Link>
+            <Link to="/login" onClick={close} id='log'>Logout</Link>
+            <Link to="/myprofile" id='pro'>My Profile</Link>
+            <Link to="/chats" id='chats'>Chats</Link>
+            <Link to="/dogprofile" id='dog'>Profile</Link>
+            <Link to="/friends" id='friend'>Friends</Link>
+            <Link to="/favs" id='fav'>Favorite Locations</Link>
+            <Link to="/popular" id='loc'>Popular Locations</Link>
+          </div>
         )
         : (
-        <ul className="nav">
-          <li id='choice'><Link to="/">Home</Link></li>
-          {user ? 
-            (<li id='log' name={'Logout'}><Link to="/logout">Logout</Link></li>)
-            : (<li id='log' name={'Login'}><Link to="/logout">Login</Link></li>)
-          }
-          <li id='pro'><Link to="/myprofile">My Profile</Link></li>
-          <li id='chats'><Link to="/chats">Chats</Link></li>
-          <li id='loc'><Link to="/popular">Popular Locations</Link></li>
-        </ul>
+        <div className="nav">
+            <Link to="/" id='choice'>Home</Link>
+            <Link to="/login" onClick={close} id='log'>Logout</Link>
+            <Link to="/myprofile" id='pro'>My Profile</Link>
+            <Link to="/chats" id='chats'>Chats</Link>
+            <Link to="/popular" id='loc'>Popular Locations</Link>
+          </div>
       )}
     </div>
   );

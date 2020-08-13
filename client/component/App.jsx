@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Sidebar from './Sidebar.jsx';
 import Choice from './Choice.jsx';
-import Logout from './Logout.jsx';
+import Login from './Login.jsx';
 import MyProfile from './MyProfile.jsx';
 import Chats from './Chats.jsx';
 import DogProfile from './DogProfile.jsx';
@@ -24,11 +24,10 @@ function App() {
       .then((response) => {
          return response.data.map(option => {
             return (
-               <div id='choice-box'>
-                  <img src={option.image}/>
+               <div id='choice-box' style={{ backgroundImage: `url('${option.image}')` }}>
                   <div id='title'>{option.name}</div>
                   <div id='breed'>{option.breed}</div>
-                  <div id='age'>{option.age}</div>
+                  <div id='age'>{`${option.age} Years Old`}</div>
                </div>
             );
          });
@@ -49,20 +48,21 @@ function App() {
       .catch((err) => console.error(err, 'we couldn\'t add this friend'));
    };
 
+   console.log('users: ', users);
+
    return (
       <Router>
          <Sidebar users={users} dogs={dogs} />
          <div className='App'>
-            <button id='settings' onClick={open}>Menu</button>
             <Switch>
-               <Route exact={true} path="/" render={() => (<Choice onLike={addFriend} dogs={dogs} />)} />
-               <Route exact path="/logout" render={() => (<Logout users={users} />)} />
-               <Route path="/myprofile" render={() => (<MyProfile dogs={dogs} />)} />
-               <Route path="/chats" render={() => (<Chats users={users} />)} />
-               <Route path="/dogprofile" render={() => (<DogProfile />)} />
-               <Route path="/friends" render={() => (<Friends dogs={dogs} />)} />
-               <Route path="/favs" render={() => (<FavLocations />)} />
-               <Route path="/popular" render={() => (<PopularLocations />)} />
+               <Route exact={true} path="/" render={() => (<Choice open={open} onLike={addFriend} dogs={dogs} />)} />
+               <Route exact path="/login" render={() => (<Login users={users} />)} />
+               <Route path="/myprofile" render={() => (<MyProfile open={open} dogs={dogs} />)} />
+               <Route exact path="/chats" render={({ match }) => (<Chats open={open} users={users} />)} />
+               <Route path="/dogprofile" render={() => (<DogProfile open={open} />)} />
+               <Route path="/friends" render={() => (<Friends open={open} dogs={dogs} />)} />
+               <Route path="/favs" render={() => (<FavLocations open={open} />)} />
+               <Route path="/popular" render={() => (<PopularLocations open={open} />)} />
             </Switch>
          </div>
       </Router>
