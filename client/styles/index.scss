@@ -1,4 +1,3 @@
-
 $mainColor : rgb(165, 134, 199);
 $backColor : rgb(50, 49, 66);
 $textBlue : rgb(0, 144, 178);
@@ -15,10 +14,13 @@ body {
 }
 
 .App {
+  height: 95%;
+  width: 95%;
   background-color: $mainColor;
   transition: margin-left .5s;
   padding: 20px;
   z-index: -1;
+  margin-left: 15px;
   #settings {
     position: absolute;
     top: 20px;
@@ -50,6 +52,11 @@ h1 {
 }
 h2 {
   font-size: 80px;
+  text-align: center;
+  color: $backColor;
+}
+#header3 {
+  font-size: 50px;
   text-align: center;
   color: $backColor;
 }

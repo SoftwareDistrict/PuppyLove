@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, Route } from 'react-router-dom';
 import axios from 'axios';
 
-function Choice({ open, onLike, dogs }) {
+function Choice({ open, onLike, dog, dogs }) {
 
   const [ index, setIndex ] = useState(0);
   const [ dogDisplay, setDogDisplay ] = useState('');
-  const [ pups, setPups ] = useState('');
+  const [ dogRows, setDogRows ] = useState('');
 
   useEffect(() => {
     setDogDisplay(dogs[1]);
@@ -14,7 +14,7 @@ function Choice({ open, onLike, dogs }) {
 
   useEffect(() => {
       axios.get('/dogs')
-      .then((response) => setPups(response.data))
+      .then((response) => setDogRows(response.data))
       .catch((err) => console.error(err, 'Could not get all dogs.'));
    }, []); 
 
@@ -28,15 +28,11 @@ function Choice({ open, onLike, dogs }) {
   };
 
   const like = () => {
-    onLike('Trigger', pups.name, true)
+    onLike('Trigger', dogRows.name, true)
     .then(() => dislike())
     .then(() => console.log('this friend was added'))
     .catch((err) => console.error(err, 'we nope'));
   };
-
-  console.log('dogs: ', dogs);
-  console.log('pups: ', pups);
-  console.log('dogDisplay: ', dogDisplay);
 
   return (
     <div>
@@ -45,7 +41,7 @@ function Choice({ open, onLike, dogs }) {
         {dogDisplay}
         <div id='select'>
           <button id='no' onClick={dislike}>No</button>
-          <Link to={`/dogprofile/${pups.id}`} id='view'>View Profile</Link>
+          <Link to={`/dogprofile/${dogRows.id}`} id='view'>View Profile</Link>
           <button id='yes' onClick={like}>Yes</button>
         </div>
       </div>
