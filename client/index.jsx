@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import './styles/tailwind.scss';
+import './styles/index.scss'
 import App from './component/App.jsx';
 import { BrowserRouter as Router } from 'react-router-dom';
 

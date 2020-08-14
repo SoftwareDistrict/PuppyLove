@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "build": "webpack --mode production --watch",
-    "build:css": "postcss client/dist/styles/tailwind.scss -o client/dist/styles/index.scss"
+    "build:css": "postcss client/styles/tailwind.scss -o client/styles/index.scss"
   },
   "repository": {
     "type": "git",
@@ -19,14 +19,23 @@
   },
   "homepage": "https://github.com/SoftwareDistrict/PuppyLove#readme",
   "dependencies": {
+    "axios": "^0.19.2",
+    "connect-flash": "^0.1.1",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mariadb": "^2.4.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
     "node-sass": "^4.14.1",
     "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-geocode": "^0.2.1",
     "react-router-dom": "^5.2.0",
+    "sequelize": "^6.3.4",
     "tailwindcss": "^1.6.2"
   },
   "devDependencies": {
@@ -43,6 +52,8 @@
     "eslint-plugin-react-hooks": "^2.5.1",
     "postcss-cli": "^7.1.1",
     "postcss-loader": "^3.0.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
