@@ -10,11 +10,11 @@ const {
 
 // Option 2: Passing parameters separately (other dialects)
 const sequelize = new Sequelize(
-  DB_NAME || 'puppy_love',
-  DB_USER || 'root',
-  DB_PASSWORD || '',
+  DB_NAME,
+  DB_USER,
+  DB_PASSWORD,
   {
-    host: DB_HOST || 'localhost',
+    host: DB_HOST,
     dialect: 'mysql',
     define: {
       timestamps: false,
