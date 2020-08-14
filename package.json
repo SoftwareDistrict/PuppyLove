@@ -33,6 +33,7 @@
     "passport-google-oauth20": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-geocode": "^0.2.1",
     "react-router-dom": "^5.2.0",
     "sequelize": "^6.3.4",
     "tailwindcss": "^1.6.2"

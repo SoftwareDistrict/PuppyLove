@@ -22,7 +22,7 @@ passport.use(new GoogleStrategy({
       if (user) {
         return done(null, user);
       }
-      let newUser = {
+      const newUser = {
         googleId: profile.id,
         email: profile.emails && profile.emails.length > 0 ? profile.emails[0].value : null,
       };
