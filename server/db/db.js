@@ -19,7 +19,8 @@ const sequelize = new Sequelize(
     define: {
       timestamps: false,
     },
-});
+  },
+);
 
 sequelize.authenticate()
   .then(() => console.log('Connection to db completed'))
