@@ -1,12 +1,24 @@
+require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize');
 
+const {
+  DB_HOST,
+  DB_USER,
+  DB_PASSWORD,
+  DB_NAME,
+} = process.env;
+
 // Option 2: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('puppy_love', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql',
-  define: {
-    timestamps: false,
-  },
+const sequelize = new Sequelize(
+  DB_NAME || 'puppy_love',
+  DB_USER || 'root',
+  DB_PASSWORD || '',
+  {
+    host: DB_HOST || 'localhost',
+    dialect: 'mysql',
+    define: {
+      timestamps: false,
+    },
 });
 
 sequelize.authenticate()
