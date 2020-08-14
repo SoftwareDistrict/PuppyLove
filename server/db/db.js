@@ -62,10 +62,10 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  acc_created: {
-    type: DataTypes.TINYINT,
-    allowNull: false,
-  },
+  // acc_created: {
+  //   type: DataTypes.TINYINT,
+  //   allowNull: true,
+  // },
 });
 
 const Dog = sequelize.define('Dog', {
@@ -201,6 +201,7 @@ const FavLocationJoint = sequelize.define('FavLocationJoint', {
 });
 
 module.exports = {
+  sequelize,
   User,
   Dog,
   Location,

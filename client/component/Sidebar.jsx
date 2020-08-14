@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Sidebar({ dog, currentCoords }) {
 
@@ -7,6 +8,13 @@ function Sidebar({ dog, currentCoords }) {
     document.getElementById("mySidenav").style.width = "0px";
   };
 
+  const logout = () => {
+    axios('/logoutt').then(() => {
+      console.log('successful logout!!!');
+    }).catch(() => {
+      console.log('unsucessful logout');
+    })
+  };
   return (
     <div id="mySidenav" className="navbar">
       <h3>PuppyLove!</h3>
@@ -24,14 +32,17 @@ function Sidebar({ dog, currentCoords }) {
           </div>
         )
         : (
-        <div className="nav">
+          <div className="nav">
             <Link to="/" id='choice'>Home</Link>
-            <Link to="/login" id='log' onClick={close}>Logout</Link>
+            <Link to="/login" id='log' onClick={() => {
+              logout();
+              close();
+            }}>Logout</Link>
             <Link to="/myprofile" id='pro'>My Profile</Link>
             <Link to="/chats" id='chats'>Chats</Link>
             <Link to="/popular" id='loc' onClick={currentCoords}>Popular Locations</Link>
           </div>
-      )}
+        )}
     </div>
   );
 };
