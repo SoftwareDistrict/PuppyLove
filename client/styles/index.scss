@@ -141,7 +141,7 @@ h3 {
           color: $active;
       }
     }
-    #chats {
+    #dog {
       top: 280px;
       margin: 40px 0 0 20px;
       font-size: x-large;
@@ -188,18 +188,6 @@ h3 {
       box-shadow: 5px 8px 18px rgba(255, 123, 0, .4);
     }
   }
-  #view {
-    font-size: 40px;
-    margin: 0 50px 30px 50px;
-    text-decoration: none;
-    color: $textBlue;
-    &:hover {
-      color: $textBlack;
-    }
-    &:active {
-        color: $active;
-    }
-  }
   #yes {
     background-color: $yes;
     border-color: $yes;
@@ -232,7 +220,7 @@ h3 {
     font-size: 50px;
   }
   #title {
-    top: 280px;
+    top: 300px;
     left: 30px;
     font-size: 55px;
     position: absolute;
@@ -241,16 +229,28 @@ h3 {
   #breed {
     top: 360px;
     left: 35px;
-    font-size: 25px;
+    font-size: 30px;
     position: absolute;
     color: $textBlack;
   }
   #age {
     top: 400px;
     left: 35px;
-    font-size: 25px;
+    font-size: 30px;
     position: absolute;
     color: $textBlack;
+  }
+  #view {
+    font-size: 40px;
+    margin: 0 50px 30px 50px;
+    text-decoration: none;
+    color: $textBlue;
+    &:hover {
+      color: $textBlack;
+    }
+    &:active {
+        color: $active;
+    }
   }
 }
 
@@ -265,14 +265,15 @@ h3 {
     padding-right: 10px;
     border-radius: 5px;
   }
-  #login {
-    background-color: $textBlue;
-    color: $backColor;
-    margin-left: 690px;
-    font-size: 20px;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 5px;
-  }
+}
+
+#login {
+  background-color: $textBlue;
+  color: $backColor;
+  margin-left: 690px;
+  font-size: 20px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
 }
