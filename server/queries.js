@@ -1,4 +1,3 @@
-// const pool = require('./db/db.js');
 const { Op } = require('sequelize');
 const { sequelize, User } = require('./db/db.js');
 
