@@ -8,7 +8,6 @@ const {
   DB_NAME,
 } = process.env;
 
-// Option 2: Passing parameters separately (other dialects)
 const sequelize = new Sequelize(
   DB_NAME || 'puppy_love',
   DB_USER || 'root',
@@ -19,7 +18,8 @@ const sequelize = new Sequelize(
     define: {
       timestamps: false,
     },
-});
+  },
+);
 
 sequelize.authenticate()
   .then(() => console.log('Connection to db completed'))
@@ -50,34 +50,10 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  pref_breed: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  pref_age_min: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  pref_age_max: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  pref_fixed: {
-    type: DataTypes.TINYINT,
-    allowNull: true,
-  },
-  distance: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
   googleId: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  // acc_created: {
-  //   type: DataTypes.TINYINT,
-  //   allowNull: true,
-  // },
 });
 
 const Dog = sequelize.define('Dog', {
@@ -142,34 +118,6 @@ const Location = sequelize.define('Location', {
   },
 });
 
-const Message = sequelize.define('Message', {
-  user_from: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'user',
-      key: 'id',
-    },
-    allowNull: false,
-  },
-  user_to: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'user',
-      key: 'id',
-    },
-    allowNull: false,
-  },
-  message: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  date: {
-    type: 'TIMESTAMP',
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-    allowNull: false,
-  },
-});
-
 const FriendJoint = sequelize.define('FriendJoint', {
   id_dog: {
     type: DataTypes.INTEGER,
@@ -193,31 +141,10 @@ const FriendJoint = sequelize.define('FriendJoint', {
   },
 });
 
-const FavLocationJoint = sequelize.define('FavLocationJoint', {
-  id_location: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'location',
-      key: 'id',
-    },
-    allowNull: false,
-  },
-  id_dog: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'dog',
-      key: 'id',
-    },
-    allowNull: false,
-  },
-});
-
 module.exports = {
   sequelize,
   User,
   Dog,
   Location,
-  Message,
   FriendJoint,
-  FavLocationJoint,
 };

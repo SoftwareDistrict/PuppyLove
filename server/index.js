@@ -5,11 +5,14 @@ const cors = require('cors');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const flash = require('connect-flash');
-const pool = require('./db/db.js');
+const sequelize = require('./db/db.js');
 require('./passport/passport');
 // const data = require('../data.json');
 const {
-  addUser, getUsers, getDogs, addFriend, isAccCreated,
+  addUser, getUsers, getDogs,
+  addFriend, unFriend, isAccCreated,
+  addDog, addLoc, getLocs, getFriends,
+  getCurrentDog,
 } = require('./queries.js');
 
 const PORT = process.env.PORT || 3000;
@@ -19,13 +22,6 @@ const app = express();
 
 /* Middleware================================================================== */
 
-// const isLoggedIn = (req, res, next) => {
-//   if (req.user) {
-//     next();
-//   } else {
-//     res.sendStatus(401);
-//   }
-// };
 app.use(express.json());
 app.use(cors());
 app.use(express.static(CLIENT_PATH));
@@ -37,7 +33,6 @@ app.use(cookieSession({
   secure: false,
 }));
 app.use(flash());
-// app.use(isLoggedIn());
 
 /* ============================================================================ */
 
@@ -47,88 +42,104 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   (req, res) => {
-    console.log(req.user, 50);
-    console.log('anything');
     const { googleId } = req.user;
-    isAccCreated(googleId).then((acc) => {
-      console.log(acc, 54);
-      if (acc) {
-        res.redirect('/');
-      } else {
-        res.redirect('/signUp');
-      }
-    }).catch((err) => {
-      console.log(err, 'user info is not stored yet');
-    });
+    isAccCreated(googleId)
+      .then((acc) => {
+        if (acc) {
+          res.redirect('/');
+        } else {
+          res.redirect('/signUp');
+        }
+      })
+      .catch((err) => res.status(500).send(err));
   });
-
-app.post('/addUserInfo', (req, res) => {
-  // const {
-  //   username, cell, hometown,
-  // } = req.body;
-  console.log(69, req.body);
-  const userInfoObj = req.body;
-  const userId = req.session.passport.user;
-  addUser(userId, userInfoObj).then((result) => {
-    console.log(72, result);
-    res.send(console.log('successful update to user row'));
-  }).catch((err) => {
-    res.send(console.log('unsucessful update to user row', err));
-  });
-
-  // addFriend(username, cell, hometown)
-  //   .then(() => {
-  //     console.log('Added This Friend');
-  //     res.sendStatus(201);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err, 'no friend added.');
-  //     res.sendStatus(500);
-  //   });
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(`${CLIENT_PATH}/index.html`);
-});
 
 app.get('/dogs', (req, res) => {
-  // getDogs()
-  //   .then((list) => res.send(list))
-  //   .catch((err) => res.status(500).send(err));
-  res.render('/dogs');
+  getDogs()
+    .then((list) => res.status(200).send(list))
+    .catch((err) => res.status(500).send(err));
+});
+
+app.post('/dogs', (req, res) => {
+  const dogInfo = req.body;
+  addDog(dogInfo)
+    .then(() => res.sendStatus(201))
+    .catch((err) => res.status(500).send(err));
+});
+
+app.get('/currentDog', (req, res) => {
+  const userId = req.session.passport.user.id;
+  getCurrentDog(userId)
+    .then((dog) => res.status(200).send(dog))
+    .catch((err) => res.status(500).send(err));
 });
 
 app.get('/users', (req, res) => {
   getUsers()
-    .then((list) => res.send(list))
+    .then((list) => res.status(200).send(list))
+    .catch((err) => res.status(500).send(err));
+});
+
+app.post('/users', (req, res) => {
+  const userInfoObj = req.body;
+  const userId = req.session.passport.user.id;
+  addUser(userId, userInfoObj)
+    .then(() => res.sendStatus(201).redirect('/'))
+    .catch((err) => res.status(500).send(err));
+});
+
+app.get('/dogFriends', (req, res) => {
+  const { id } = req.body;
+  getFriends(id)
+    .then((list) => res.status(200).send(list))
     .catch((err) => res.status(500).send(err));
 });
 
 app.post('/friends', (req, res) => {
-  console.log(req.body);
-  const {
-    name, friendName, bool,
-  } = req.body;
-  addFriend(name, friendName, bool)
-    .then(() => {
-      console.log('Added This Friend');
-      res.sendStatus(201);
-    })
-    .catch((err) => {
-      console.error(err, 'no friend added.');
-      res.sendStatus(500);
-    });
+  const friendObj = {
+    dogId: req.session.passport.dog,
+    friendId: req.body,
+    bool_friend: 1,
+  };
+  addFriend(friendObj)
+    .then(() => res.sendStatus(201))
+    .catch((err) => res.status(500).send(err));
 });
 
-app.get('/logoutt', (req, res) => {
-  console.log('118');
+app.post('/unfriend', (req, res) => {
+  const dogId = req.session.passport.dog;
+  const friendId = req.body;
+  const bool = 0;
+  unFriend(dogId, friendId, bool)
+    .then(() => res.sendStatus(201))
+    .catch((err) => res.status(500).send(err));
+});
+
+app.get('/loc', (req, res) => {
+  getLocs()
+    .then((list) => res.status(200).send(list))
+    .catch((err) => res.status(500).send(err));
+});
+
+app.post('/loc', (req, res) => {
+  const locObj = req.body;
+  addLoc(locObj)
+    .then(() => res.sendStatus(201))
+    .catch((err) => res.status(500).send(err));
+});
+
+app.get('/logout', (req, res) => {
   req.session = null;
   req.logout();
   res.redirect('/login');
 });
 
 app.get('/session', (req, res) => {
-  res.send(req.user);
+  res.send(req.session.passport.user);
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(`${CLIENT_PATH}/index.html`);
 });
 
 /* ============================================================================ */
