@@ -1,2 +1,4 @@
 node_modules
 .env
+PuppyLove.pem
+.DS_Store
