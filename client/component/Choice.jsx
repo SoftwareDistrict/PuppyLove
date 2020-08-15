@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function Choice({ open, onLike, dog, dogs }) {
+function Choice({ open, sessUser, sessDog, dogs }) {
 
   const [ index, setIndex ] = useState(0);
   const [ dogDisplay, setDogDisplay ] = useState('');
-  const [ dogRows, setDogRows ] = useState('');
+  const [ allDogs, setAllDogs ] = useState('');
 
   useEffect(() => {
-    setDogDisplay(dogs[1]);
+    setDogDisplay(dogs[0]);
   }, [dogs]);
 
   useEffect(() => {
-      axios.get('/dogs')
-      .then((response) => setDogRows(response.data))
-      .catch((err) => console.error(err, 'Could not get all dogs.'));
+    axios.get('/dogs')
+    .then((response) => setAllDogs(response.data))
+    .catch((err) => console.error(err, 'Could not get all dogs.'));
    }, []); 
 
   const dislike = () => {
@@ -27,38 +27,33 @@ function Choice({ open, onLike, dog, dogs }) {
     }
   };
 
-  const like = () => {
-    onLike('Trigger', dogRows.name, true)
-    .then(() => dislike())
-    .then(() => console.log('this friend was added'))
-    .catch((err) => console.error(err, 'we nope'));
+  const send = () => {
+    // axios.post('/direct', { id: dogs[index].key })
+    // .then(() => console.log('yayayaya'))
+    // .catch(err => console.error('nooooooo! ', err));
+  };
+
+  const addFriend = () => {
+    // axios.post('/friends',  { id: dogs[index].key })
+    // .then(() => dislike())
+    // .then(() => console.log('this friend was added'))
+    // .catch((err) => console.error(err, 'we couldn\'t add this friend'));
   };
 
   return (
     <div>
-      <div>
-        <button id='settings' onClick={open}>Menu</button>
-        {dogDisplay}
-        <div id='select'>
-          <button id='no' onClick={dislike}>No</button>
-          <Link to={`/dogprofile/${dogRows.id}`} id='view'>View Profile</Link>
-          <button id='yes' onClick={like}>Yes</button>
-        </div>
+      <button id='settings' onClick={open}>Menu</button>
+      {dogDisplay}
+      <div id='select'>
+        <button id='no' onClick={dislike}>No</button>
+        <Link to={'/dogprofile'} id='view'>View Profile</Link>
+        {/* <Link to={`/dogprofile/${dogs[0].key}`} id='view'>View Profile</Link> */}
+        {/* <button id="view" onClick={send} style={{ background: "none", border: "none" }}>View Profile</button> */}
+        <button id='yes' onClick={addFriend}>Yes</button>
       </div>
-        {/* <Route path={`${match.path}/:id`} /> */}
     </div>
   );
 };
 
 export default Choice;
  
-
-// const choice = dogs.map(option => {
-//   return (
-//     <div id='choice-box' style={{ backgroundImage: `url('${option.image}')` }}>
-//       <div id='title'>{option.name}</div>
-//       <div id='breed'>{option.breed}</div>
-//       <div id='age'>{option.age}</div>
-//     </div>
-//   );
-// });

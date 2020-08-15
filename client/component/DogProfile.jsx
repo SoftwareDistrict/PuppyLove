@@ -1,64 +1,51 @@
-// import React from 'react';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, Route } from 'react-router-dom';
+import axios from 'axios';
 
+function DogProfile({ open, sessUser, sessDog, dog }) {
 
-function DogProfile({ dog, setDog }) {
+  const [ friends, setFriends ] = useState('');
 
+  const { id, dog_name, breed, weight, age, fixed, description, image, id_user } = dog;
 
-  const { id, name, breed, weight, age, fixed, description, image, id_user, friendsArr } = dog
+  // useEffect(() => {
+  //   axios.post('/dogfriends', { id })
+  //   .then(response => setFriends(response.data))
+  //   .then((friendList) => setFriends(friendList))
+  //   .catch(() => console.error('We could not get this dog\'s friends'));
+  // });
 
-  const submit = () => { console.log('submitted') };
-  const func = () => { console.log(dog) }
-
-
-//Varaible for a div that contains dogs info
-  let dogInfo = <div class='profileContainer'>
-    <h1>{`${name}'s Profile Information`}</h1>
-    <div class='profileInfo'>{`Name: ${name}`}</div>
-    <div class='profileInfo'>{`Age: ${age}`}</div>
-    <div class='profileInfo'>{`Weight: ${weight}`}</div>
-    <div class='profileInfo'>{`Breed: ${age}`}</div>
-    <div class='profileInfo'>{`Fixed: ${fixed}`}</div>
-    <div class='profileInfo'>{`Description: ${description}`}</div>
-    <div class='profileInfo'>Photo: <img src={image}></img></div>
-
-
-  </div>
+  const unfriend = () => {
+    axios.post('/unfriend', { id })
+    .then(() => console.log('see you later!'))
+    .catch((err) => console.error(err, 'we couldn\'t get rid of this "friend"'));
+  };
 
   return (
-    <div>
-      {/* Dogs info div */}
-      {dogInfo}
-      {/* Dogs friends list */}
-      {friendsArr ? <h2 class='profileContainer'>{`${name}'s Friends`}</h2> : <div></div>}
-      <div class='profileContainer'>
-        {(friendsArr) ?
-          <div>
-            {friendsArr.map((friend) => {
-              return <div>
-                <p><label>Name: </label>{friend.name}</p>
-                <div><img src={friend.image}></img></div>
-                <Link to="/dogProfile"><button onClick={() => {
-                  setDog(friend);
-                }}>{`Go to ${friend.name}'s profile!!!?`}</button></Link>
-              </div>
-            })}
-          </div> : <div></div>
-        }
-
-      </div>
+    <div class='profileContainer'>
+      <button id='settings' onClick={open}>Menu</button>
+      <h1>{`${dog_name}'s Profile`}</h1>
+      <img src={image} />
+      <div class='profileInfo'>{`Name: ${dog_name}`}</div>
+      <div class='profileInfo'>{`Age: ${age} years`}</div>
+      <div class='profileInfo'>{`Weight: ${weight} lbs`}</div>
+      <div class='profileInfo'>{`Breed: ${breed}`}</div>
+      <div class='profileInfo'>{`Fixed: ${fixed}`}</div>
+      <div class='profileInfo'>{`Description: ${description}`}</div>
+      <h3>Friends of {dog_name}</h3>
+      {/* <div>{
+        friends.map(({ id, image, dog_name }) => {
+          return (
+            <div class='profileContainer' key={id}>
+              <div class='profileInfo' style={{ backgroundImage: `url('${image}')` }}>{dog_name}</div>
+              <Link to={`/dogprofile/${id}`}>View Profile</Link>
+              <button id='login' type='button' onClick={unfriend}>Unfriend</button>
+            </div>
+          );
+        })
+      }</div> */}
     </div>
   );
 };
 
 export default DogProfile;
-
-
-
-
-
-
-
-
-
