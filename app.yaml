@@ -1,9 +1,0 @@
-runtime: nodejs
-env_variables:
-  PORT: 8080
-  GOOGLE_CLIENT_ID: '623022883655-2r57jprvkjvbai931rhicsndc5pvj7ri.apps.googleusercontent.com'
-  GOOGLE_CLIENT_SECRET: 'Le5XP9ncvF1dx1LFBKLZ9NJr'
-  DB_HOST: '35.238.226.198'
-  DB_USER: 'vaidoamne'
-  DB_PASSWORD: 'drd36dft'
-  DB_NAME: 'puppy_love'
