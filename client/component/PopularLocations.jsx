@@ -10,8 +10,9 @@ function PopularLocations({ open, sessUser, sessDog, lat, lng }) {
   const [ coords, setCoords ] = useState('');
   const [ image, setImage ] = useState('');
   const [ places, setPlaces ] = useState('');
+  const [ clicked, setClicked ] = useState(false);
 
-  const API_KEY = '';
+  const API_KEY = 'AIzaSyAIShYGz5mXtO2XtWhaOHlrmDz33fKCnmE';
   Geocode.setApiKey(API_KEY);
 
  useEffect(() => setCoords({ lat, lng }), []);
@@ -21,7 +22,7 @@ function PopularLocations({ open, sessUser, sessDog, lat, lng }) {
     .then(response => {
       return response.data.map(place => {
         return (
-          <div id='locbox'>
+          <div id='locbox' style={{ fontSize: '20px', marginLeft: '100px', flexDirection: 'row' }}>
             <img src={place.image_url} />
             <div>Name: {place.location_name}</div>
             <div>Desc: {place.description}</div>
@@ -37,29 +38,29 @@ function PopularLocations({ open, sessUser, sessDog, lat, lng }) {
   const addLoc = () => {
     axios.post('/loc', {
       location_name: name,
+      latitude: coords.lat,
+      longitude: coords.lng,
       description: desc,
-      latitiude: coords[0],
-      longitude: coords[1],
       image_url: image,
     })
-    .then(() => console.log('sending location to backend'))
-    .cathc(() => console.error('could not send this location info ', err));
+    .then(() => setClicked(false))
+    .catch((err) => console.info('could not send this location info ', err));
   };
 
-  const displayForm = () => { 
-    document.getElementById("under").appendChild(
-      <div id="location-form">
-        <h3>Describe This Location</h3>
-        <div class="sc-container">
-            <input classname='create' onChange={(event) => setName(event.target.value) } type="text" placeholder="Location Name" /><br /><br />
-            <input classname='create' onChange={(event) => setImage(event.target.value) } type="text" placeholder="Add an Image" /><br /><br />
-            <input classname='create' onChange={(event) => setDesc(event.target.value) } type="text" placeholder="Description" /><br /><br />
-            <button id="login" type="button" onClick={() => addLoc()}>Submit</button>
-        </div>
+  const displayForm = () => setClicked(true);
+
+  const form = (
+    <div id="location-form">
+      <h3>Describe This Location</h3>
+      <div class="sc-container">
+          <input classname='create' onChange={(event) => setName(event.target.value)} type="text" placeholder="Location Name" /><br /><br />
+          <input classname='create' onChange={(event) => setImage(event.target.value)} type="text" placeholder="Add an Image" /><br /><br />
+          <input classname='create' onChange={(event) => setDesc(event.target.value)} type="text" placeholder="Description" /><br /><br />
+          <button id="login" type="button" onClick={() => addLoc()}>Submit</button>
       </div>
-    );
-  };
-  
+    </div>
+  );
+
   const searchLoc = () => {
     console.log(coords);
     Geocode.fromAddress(query)
@@ -67,8 +68,8 @@ function PopularLocations({ open, sessUser, sessDog, lat, lng }) {
       setCoords(response.results[0].geometry.location)
       console.log(coords);
     })
-    .then(() => document.getElementById('loc-search').value = "")
-    .catch(err => console.error('code not set location you searched', err));
+    .then(() => document.getElementById('loc-search').val(""))
+    .catch(err => console.error('could not set location you searched', err));
   };
 
   return (
@@ -81,10 +82,9 @@ function PopularLocations({ open, sessUser, sessDog, lat, lng }) {
         <GoogleMap mapContainerStyle={{ width: '70vw', height: '60vh', marginLeft: '200px', marginBottom: '20px', border: '5px solid #333', borderRadius: '20px' }} center={coords} zoom={10}></GoogleMap>
       </LoadScript>
       <button id="loginn" type="button" onClick={displayForm}>Add This Location</button>
-      <div id="under"></div>
-      <ul style={{ marginLeft: '100px' }}>
+      <div id="under">{clicked ? form : <div></div>}</div>
         Location List
-        <br /><br />
+      <ul>
         {places}
       </ul>
     </div>
