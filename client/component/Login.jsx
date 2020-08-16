@@ -2,9 +2,9 @@ import React from 'react';
 
 function Login() {
   return (
-    <div>
+    <div style={{ height: '90vh', width: '90vw' }}>
       <h2>Login</h2>
-      <div id='log-butt' style={{marginBottom: '1000px'}}>
+      <div id='log-butt'>
         <a id='signup' href='/auth/google'>Sign In With Google</a>
       </div>
     </div>

@@ -45,16 +45,16 @@ function SignUp({ sessUser, sessDog }) {
             <div id="sign-form">
                 <h3>Create Account</h3>
                     <div class="sc-container">
-                        <input classname='create' onChange={(event) => setUsername(event.target.value) } type="text" placeholder="Username" /><br /><br />
-                        <input classname='create' onChange={(event) => setCell(event.target.value) } type="text" placeholder="Cell Phone Number" /><br /><br />
-                        <input classname='create' onChange={(event) => setHometown(event.target.value) } type="text" placeholder="Hometown" /><br /><br />
+                        <input classname='create' onChange={(event) => setUsername(event.target.value)} type="text" placeholder="Username" /><br /><br />
+                        <input classname='create' onChange={(event) => setCell(event.target.value)} type="text" placeholder="Cell Phone Number" /><br /><br />
+                        <input classname='create' onChange={(event) => setHometown(event.target.value)} type="text" placeholder="Hometown" /><br /><br />
                     </div>
                 <h3>Add Your Dog</h3>
                 <div class="signup-form">
-                    <input classname='create' onChange={(event) => setDogName(event.target.value) } type="text" placeholder="Name" /><br /><br />
-                    <input classname='create' onChange={(event) => setBreed(event.target.value) } type="text" placeholder="Breed" /><br /><br />
-                    <input classname='create' onChange={(event) => setAge(event.target.value) } type="text" placeholder="Age" /><br /><br />
-                    <input classname='create' onChange={(event) => setWeight(event.target.value) } type="text" placeholder="Weight" /><br /><br />
+                    <input classname='create' onChange={(event) => setDogName(event.target.value)} type="text" placeholder="Name" /><br /><br />
+                    <input classname='create' onChange={(event) => setBreed(event.target.value)} type="text" placeholder="Breed" /><br /><br />
+                    <input classname='create' onChange={(event) => setAge(event.target.value)} type="text" placeholder="Age" /><br /><br />
+                    <input classname='create' onChange={(event) => setWeight(event.target.value)} type="text" placeholder="Weight" /><br /><br />
                     <input classname='create' onChange={(event) => {
                         if (event.target.value === "true") {
                             setFixed(0);
@@ -62,8 +62,8 @@ function SignUp({ sessUser, sessDog }) {
                             setFixed(1);
                         }
                     }} type="text" placeholder="Fixed" /><br /><br />
-                    <input classname='create' onChange={(event) => setDesc(event.target.value) } type="text" placeholder="Description" /><br /><br />
-                    <input classname='create' onChange={(event) => setImage(event.target.value) } type="text" placeholder="Image URL" /><br /><br />
+                    <input classname='create-desc' onChange={(event) => setDesc(event.target.value)} type="text" placeholder="Description" /><br /><br />
+                    <input classname='create' onChange={(event) => setImage(event.target.value)} type="text" placeholder="Image URL" /><br /><br />
                     <Link to='/' id="dude" onClick={() => {
                         addUserInfo();
                         addDogInfo();
