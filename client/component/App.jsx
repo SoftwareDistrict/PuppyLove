@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Sidebar from './Sidebar.jsx';
 import Choice from './Choice.jsx';
@@ -37,7 +37,6 @@ function App() {
                      <div id='title'>{option.dog_name}</div>
                      <div id='breed'>{option.breed}</div>
                      <div id='age'>{`${option.age} Years Old`}</div>
-                     <Link to={`/dogprofile/${option.id}`} id='view'>View Profile</Link>
                   </div>
                );
             });
@@ -47,8 +46,6 @@ function App() {
    }, []);
 
     useEffect(() => {
-      const x = document.getElementById("map");
-
       const showPosition = (position) => {
          setLng(position.coords.longitude);
          setLat(position.coords.latitude);
@@ -57,7 +54,7 @@ function App() {
       if (navigator.geolocation) {
          navigator.geolocation.getCurrentPosition(showPosition);
       } else {
-         x.innerHTML = "Geolocation is not supported by this browser.";
+         console.log("Geolocation is not supported by this browser....");
       }
    }, []);
 
@@ -65,18 +62,9 @@ function App() {
       document.getElementById("mySidenav").style.width = "280px";
    };
 
-   const initMap = () => {
-      // const map = new google.maps.Map(document.getElementById('map'), {
-      //    center: { lat: lat, lng: lng },
-      //    zoom: 8,
-      // });
-      // return map;
-      console.log('The map will render now!');
-   };
-
    return (
       <Router>
-         <Sidebar map={initMap} sessUser={sessUser} sessDog={sessDog} />
+         <Sidebar sessUser={sessUser} sessDog={sessDog} />
          <div className='App'>
             <Switch>
                <Route exact={true} path="/" render={() => (<Choice open={open} sessUser={sessUser} sessDog={sessDog} dogs={dogs} />)} />
