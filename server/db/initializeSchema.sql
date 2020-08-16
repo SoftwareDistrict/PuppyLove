@@ -53,23 +53,23 @@ CREATE TABLE IF NOT EXISTS Friend_joint(
 INSERT INTO Users
   (username, email, cell, latitude, longitude, home_town, googleId)
 VALUES
-  ("Tyler", "tyler@gamil.com", "(985)-123-4567", "29.9511", "90.0715", "1");
+  ("Tyler", "tyler@gamil.com", "(985)-123-4567", "29.9511", "90.0715", "New Orleans", "1");
 INSERT INTO Users
     (username, email, cell, latitude, longitude, home_town, googleId)
 VALUES
-  ("Zoey", "zoey@gmail.com", "(985)-123-4567", "29.9511", "90.0715", "2");
+  ("Zoey", "zoey@gmail.com", "(985)-123-4567", "29.9511", "90.0715", "New Orleans", "2");
 INSERT INTO Users
     (username, email, cell, latitude, longitude, home_town, googleId)
 VALUES
-  ("John", "john@gmail.com", "(985)-123-4567", "29.9511", "90.0715", "3");
+  ("John", "john@gmail.com", "(985)-123-4567", "29.9511", "90.0715", "New Orleans", "3");
 INSERT INTO Users
     (username, email, cell, latitude, longitude, home_town, googleId)
 VALUES
-  ("Timmy", "timmy@gmail.com", "(985)-123-4567", "29.9511", "90.0715", "4");
+  ("Timmy", "timmy@gmail.com", "(985)-123-4567", "29.9511", "90.0715", "New Orleans", "4");
 INSERT INTO Users
     (username, email, cell, latitude, longitude, home_town, googleId)
 VALUES
-  ("Ashley", "ashley@gmail.com", "(985)-123-4567", "29.9511", "90.0715", "5");
+  ("Ashley", "ashley@gmail.com", "(985)-123-4567", "29.9511", "90.0715", "New Orleans", "5");
 -- DOG (true is 1 and false is 0)
 -- INSERT INTO Dogs (name, breed, weight, age, fixed, description, image, id_user) VALUES ((SELECT id FROM user WHERE username = ));
 INSERT INTO Dogs
