@@ -9,8 +9,8 @@ $active : rgb(178, 85, 0);
 $hover: rgb(255, 123, 0);
 
 @mixin hoverAction() {
-  cursor: pointer;
   &:hover {
+    cursor: pointer;
       color: $hover;
     }
     &:active {
@@ -26,6 +26,7 @@ $hover: rgb(255, 123, 0);
   border-width: thin;
   border-radius: 20px;
   &:hover {
+    cursor: pointer;
     box-shadow: 5px 8px 18px rgba(255, 123, 0, .4);
   }
 }
@@ -33,7 +34,7 @@ $hover: rgb(255, 123, 0);
 @mixin deets() {
   font-size: 30px;
   position: absolute;
-  color: $textBlack;
+  color: $textBlue;
 }
 
 @mixin link() {
@@ -107,7 +108,7 @@ h3 {
 }
 
 #select {
-  margin: 575px 0 20px 0;
+  margin: 43% 0 10px 0;
   #no {
     @include swipe($no);
     margin-left: 440px;
@@ -118,6 +119,7 @@ h3 {
     text-decoration: none;
     color: $textBlue;
     &:hover {
+    cursor: pointer;
       color: $textBlack;
     }
     &:active {
@@ -133,10 +135,12 @@ h3 {
   position: absolute;
   width: 60vw;
   height: 75vh;
-  left: 330px;
-  top: 50px;
+  // left: 330px;
+  left: 22%;
+  top: 8%;
+  // top: 50px;
   border-radius: 50px;
-  background-size: cover;
+  background-size: 60vw 75vh;
   background-repeat: no-repeat;
   vertical-align: middle;
   #alt {
@@ -149,19 +153,19 @@ h3 {
   }
   #title {
     @include deets();
-    top: 300px;
-    left: 30px;
+    top: 60%;
+    left: 6%;
     font-size: 55px;
   }
   #breed {
     @include deets();
-    top: 360px;
-    left: 35px;
+    top: 73%;
+    left: 8%;
   }
   #age {
     @include deets();
-    top: 400px;
-    left: 35px;
+    top: 82%;
+    left: 8%
   }
 }
 
