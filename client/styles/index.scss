@@ -8,20 +8,62 @@ $no : rgb(126, 20, 46);
 $active : rgb(178, 85, 0);
 $hover: rgb(255, 123, 0);
 
+@mixin hoverAction() {
+  &:hover {
+    cursor: pointer;
+      color: $hover;
+    }
+    &:active {
+        color: $active;
+    }
+}
+
+@mixin swipe($choice) {
+  background-color: $choice;
+  border-color: $choice;
+  padding: 5px 30px 5px 30px;
+  font-size: 40px;
+  border-width: thin;
+  border-radius: 20px;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 5px 8px 18px rgba(255, 123, 0, .4);
+  }
+}
+
+@mixin deets() {
+  font-size: 30px;
+  position: absolute;
+  color: $textBlue;
+}
+
+@mixin link() {
+  margin: 40px 0 0 20px;
+  font-size: x-large;
+  color: $textBlue;
+  transition: 0.3s;
+  position: absolute;
+  text-decoration: none;
+}
+
 body {
   font-family: arial;
   background-color: $backColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App {
-  height: 95%;
-  width: 95%;
+  height: 100%;
+  width: 90vw;
   background-color: $mainColor;
   transition: margin-left .5s;
   padding: 20px;
   z-index: -1;
   margin-left: 15px;
   #settings {
+    @include hoverAction();
     position: absolute;
     top: 20px;
     font-size: xx-large;
@@ -30,13 +72,6 @@ body {
     color: rgb(230, 222, 222);
     border: none;
     background: none;
-    cursor: pointer;
-    &:hover {
-      color: $hover;
-    }
-    &:active {
-        color: $active;
-    }
   }
 }
 
@@ -50,16 +85,19 @@ h1 {
   border-color: $border;
   border-radius: 20px;
 }
+
 h2 {
   font-size: 80px;
   text-align: center;
   color: $backColor;
 }
+
 #header3 {
   font-size: 50px;
   text-align: center;
   color: $backColor;
 }
+
 h3 {
   padding-right: 100px;
   padding-left: 50px;
@@ -69,124 +107,11 @@ h3 {
   color: $backColor;
 }
 
-.navbar {
-  height: 1000px;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: $backColor;
-  overflow-x: hidden;
-  transition: 0.5s;
-  #settings {
-    font-size: large;
-    margin-left: 10px;
-    text-decoration: underline;
-    color: $textBlue;
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 0;
-    &:hover {
-      color: $hover;
-    }
-    &:active {
-        color: $active;
-    }
-  }
-  .nav {
-    #choice {
-      top: 100px;
-      margin: 40px 0 0 20px;
-      font-size: x-large;
-      color: $textBlue;
-      transition: 0.3s;
-      position: absolute;
-      text-decoration: none;
-      &:hover {
-        color: $hover;
-      }
-      &:active {
-          color: $active;
-      }
-    }
-    #log {
-      top: 160px;
-      margin: 40px 0 0 20px;
-      font-size: x-large;
-      color: $textBlue;
-      transition: 0.3s;
-      position: absolute;
-      text-decoration: none;
-      &:hover {
-        color: $hover;
-      }
-      &:active {
-          color: $active;
-      }
-    }
-    #pro {
-      top: 220px;
-      margin: 40px 0 0 20px;
-      font-size: x-large;
-      color: $textBlue;
-      transition: 0.3s;
-      position: absolute;
-      text-decoration: none;
-      &:hover {
-        color: $hover;
-      }
-      &:active {
-          color: $active;
-      }
-    }
-    #chats {
-      top: 280px;
-      margin: 40px 0 0 20px;
-      font-size: x-large;
-      color: $textBlue;
-      transition: 0.3s;
-      position: absolute;
-      text-decoration: none;
-      &:hover {
-        color: $hover;
-      }
-      &:active {
-          color: $active;
-      }
-    }
-    #loc {
-      top: 340px;
-      margin: 40px 0 0 20px;
-      font-size: x-large;
-      color: $textBlue;
-      transition: 0.3s;
-      position: absolute;
-      text-decoration: none;
-      &:hover {
-        color: $hover;
-      }
-      &:active {
-          color: $active;
-      }
-    }
-  }
-}
-
 #select {
-  margin: 575px 0 20px 0;
+  margin: 43% 0 10px 0;
   #no {
-    margin-left: 530px;
-    background-color: $no;
-    border-color: $no;
-    padding: 5px 30px 5px 30px;
-    font-size: 40px;
-    border-width: thin;
-    border-radius: 20px;
-    &:hover {
-      box-shadow: 5px 8px 18px rgba(255, 123, 0, .4);
-    }
+    @include swipe($no);
+    margin-left: 440px;
   }
   #view {
     font-size: 40px;
@@ -194,6 +119,7 @@ h3 {
     text-decoration: none;
     color: $textBlue;
     &:hover {
+    cursor: pointer;
       color: $textBlack;
     }
     &:active {
@@ -201,26 +127,20 @@ h3 {
     }
   }
   #yes {
-    background-color: $yes;
-    border-color: $yes;
-    padding: 5px 30px 5px 30px;
-    font-size: 40px;
-    border-width: thin;
-    border-radius: 20px;
-    &:hover {
-      box-shadow: 5px 8px 18px rgba(255, 123, 0, .4);
-    }
+    @include swipe($yes);
   }
 }
 
 #choice-box {
   position: absolute;
-  width: 850px;
-  height: 500px;
-  left: 400px;
-  top: 50px;
+  width: 60vw;
+  height: 75vh;
+  // left: 330px;
+  left: 22%;
+  top: 8%;
+  // top: 50px;
   border-radius: 50px;
-  background-size: cover;
+  background-size: 60vw 75vh;
   background-repeat: no-repeat;
   vertical-align: middle;
   #alt {
@@ -232,25 +152,70 @@ h3 {
     font-size: 50px;
   }
   #title {
-    top: 280px;
-    left: 30px;
+    @include deets();
+    top: 60%;
+    left: 6%;
     font-size: 55px;
-    position: absolute;
-    color: $textBlack;
   }
   #breed {
-    top: 360px;
-    left: 35px;
-    font-size: 25px;
-    position: absolute;
-    color: $textBlack;
+    @include deets();
+    top: 73%;
+    left: 8%;
   }
   #age {
-    top: 400px;
-    left: 35px;
-    font-size: 25px;
-    position: absolute;
-    color: $textBlack;
+    @include deets();
+    top: 82%;
+    left: 8%
+  }
+}
+
+.navbar {
+  height: 100vh;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: $backColor;
+  overflow-x: hidden;
+  transition: 0.5s;
+  #settings {
+    @include hoverAction();
+    font-size: large;
+    margin-left: 10px;
+    text-decoration: underline;
+    color: $textBlue;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .nav {
+    #choice {
+      @include hoverAction();
+      @include link();
+      top: 100px;
+    }
+    #log {
+      @include hoverAction();
+      @include link();
+      top: 160px;
+    }
+    #pro {
+      @include hoverAction();
+      @include link();
+      top: 220px;
+    }
+    #dog {
+      @include hoverAction();
+      @include link();
+      top: 280px;
+    }
+    #loc {
+      @include hoverAction();
+      @include link();
+      top: 340px;
+    }
   }
 }
 
@@ -275,4 +240,47 @@ h3 {
     padding-right: 10px;
     border-radius: 5px;
   }
+}
+
+#loginn {
+  background-color: $textBlue;
+  color: $backColor;
+  margin-left: 650px;
+  font-size: 20px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+}
+
+#dude {
+  font-size: 40px;
+  margin: 0 50px 30px 50px;
+  text-decoration: none;
+  color: $textBlue;
+  &:hover {
+    color: $textBlack;
+  }
+  &:active {
+      color: $active;
+  }
+}
+
+#loc-box {
+
+}
+
+.create {
+
+}
+.create-desc {
+
+}
+
+.input-field {
+  width: 500px;
+  height: 35px;
+  font-size: 16px;
+  margin: 10px 0 10px 340px;
+  padding-left: 10px
 }

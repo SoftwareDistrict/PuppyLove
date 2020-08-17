@@ -2,47 +2,32 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function Sidebar({ dog, currentCoords }) {
+function Sidebar({ sessUser, sessDog, getFriends, allDogs }) {
 
   const close = () => {
     document.getElementById("mySidenav").style.width = "0px";
   };
 
   const logout = () => {
-    axios('/logoutt').then(() => {
-      console.log('successful logout!!!');
-    }).catch(() => {
-      console.log('unsucessful logout');
-    })
+    axios.get('/logout')
+    .then(() => console.log('successful logout'))
+    .catch((err) => console.log('unsucessful logout: ', err))
   };
+  
   return (
     <div id="mySidenav" className="navbar">
       <h3>PuppyLove!</h3>
       <button id='settings' onClick={close}>Menu</button>
-      {dog ?
-        (
-          <div className="nav">
-            <Link to="/" id='choice'>Home</Link>
-            <Link to="/login" id='log' onClick={close}>Logout</Link>
-            <Link to="/myprofile" id='pro'>My Profile</Link>
-            <Link to="/chats" id='chats'>Chats</Link>
-            <Link to="/dogprofile" id='dog'>Profile</Link>
-            <Link to="/favs" id='fav' onClick={currentCoords}>Favorite Locations</Link>
-            <Link to="/popular" id='loc' onClick={onClick}>Popular Locations</Link>
-          </div>
-        )
-        : (
-          <div className="nav">
-            <Link to="/" id='choice'>Home</Link>
-            <Link to="/login" id='log' onClick={() => {
-              logout();
-              close();
-            }}>Logout</Link>
-            <Link to="/myprofile" id='pro'>My Profile</Link>
-            <Link to="/chats" id='chats'>Chats</Link>
-            <Link to="/popular" id='loc' onClick={currentCoords}>Popular Locations</Link>
-          </div>
-        )}
+      <div className="nav">
+        <Link to="/" id='choice'>Home</Link>
+        <Link to="/login" id='log' onClick={() => {
+          logout();
+          close();
+        }}>Logout</Link>
+        <Link to="/myprofile" id='pro'>My Profile</Link>
+        <Link to={`/dogprofile/${sessDog.id}`} id='dog' data={allDogs} onClick={() => getFriends(sessDog.id)}>Profile</Link>
+        <Link to="/popular" id='loc'>Popular Locations</Link>
+      </div>
     </div>
   );
 };
