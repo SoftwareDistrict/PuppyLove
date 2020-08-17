@@ -92,7 +92,10 @@ app.post('/dogs', (req, res) => {
 app.get('/currentDog', (req, res) => {
   const userId = req.session.passport.user.id;
   getCurrentDog(userId)
-    .then((dog) => res.status(200).send(dog))
+    .then((dog) => {
+      console.log('/currentDog', dog);
+      res.status(200).send(dog);
+    })
     .catch((err) => res.sendStatus(500));
 });
 

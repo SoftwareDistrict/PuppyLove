@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 
-function SignUp({ sessUser, sessDog }) {
+function SignUp({ sessUser, sessDog, getSessDog }) {
     const [ username, setUsername ] = useState('');
     const [ cell, setCell ] = useState('');
     const [ hometown, setHometown ] = useState('');
@@ -67,6 +67,7 @@ function SignUp({ sessUser, sessDog }) {
                     <Link to='/' id="dude" onClick={() => {
                         addUserInfo();
                         addDogInfo();
+                        getSessDog();
                     }}>Create</Link>
                 </div>
             </div>

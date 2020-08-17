@@ -22,7 +22,9 @@ function App(props) {
 
    useEffect(() => {
       axios.get('/session')
-      .then(response => setSessUser(response.data))
+      .then(response => {
+         setSessUser(response.data)
+      })
       .catch(err => console.error(err));
    }, []);
 
@@ -32,11 +34,11 @@ function App(props) {
    //       .catch(err => console.log(16, err));
    // }, [])
 
-   useEffect(() => {
-      axios.get('/currentDog')
-      .then(response => setSessDog(response.data[0]))
-      .catch(err => console.error('could not set session dog: ', err));
-   }, []);
+   // useEffect(() => {
+   //    axios.get('/currentDog')
+   //    .then(response => setSessDog(response.data[0]))
+   //    .catch(err => console.error('could not set session dog: ', err));
+   // }, []);
 
    useEffect(() => {
       axios.get('/dogs')
@@ -88,6 +90,12 @@ function App(props) {
       // .catch(() => console.error('We could not get this dog\'s friends'));
    };
 
+   const getSessDog = () => {
+      axios.get('/currentDog')
+      .then(response => setSessDog(response.data[0]))
+      .catch(err => console.error('could not set session dog: ', err));
+   }
+
    return (
       <Router>
          <Sidebar sessUser={sessUser} sessDog={sessDog} getFriends={getFriends} allDogs={allDogs} />
@@ -98,7 +106,7 @@ function App(props) {
                <Route path="/myprofile" render={() => (<MyProfile open={open} sessUser={sessUser} sessDog={sessDog} />)} />
                <Route path="/dogprofile" render={() => (<DogProfile open={open} sessUser={sessUser} sessDog={sessDog} allDogs={allDogs} friends={friends} getFriends={getFriends} />)} />
                <Route path="/popular" render={() => (<PopularLocations sessUser={sessUser} sessDog={sessDog} google={props.google} open={open} center={{ lat: 29.9511, lng: 90.0715 }} zoom={10} />)} />
-               <Route path="/signUp" render={() => (<SignUp sessUser={sessUser} sessDog={sessDog} />)} />
+               <Route path="/signUp" render={() => (<SignUp sessUser={sessUser} sessDog={sessDog} getSessDog={getSessDog}/>)} />
             </Switch>
          </div>
       </Router>

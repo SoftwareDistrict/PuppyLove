@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Geocode from 'react-geocode';
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Autocomplete from 'react-google-autocomplete';
-import { API_KEY } from '../config.js';
 import axios from 'axios';
 Geocode.setApiKey( "AIzaSyAIShYGz5mXtO2XtWhaOHlrmDz33fKCnmE" );
 Geocode.enableDebug();
