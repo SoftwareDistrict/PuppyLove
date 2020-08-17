@@ -9,7 +9,7 @@ import DogProfile from './DogProfile.jsx';
 import PopularLocations from './PopularLocations.jsx';
 import SignUp from './SignUp.jsx';
 
-function App() {
+function App(props) {
    const [ lat, setLat ] = useState('');
    const [ lng, setLng ] = useState('');
    const [ sessUser, setSessUser ] = useState('');
@@ -91,7 +91,7 @@ function App() {
                <Route exact path="/login" render={() => (<Login />)} />
                <Route path="/myprofile" render={() => (<MyProfile open={open} sessUser={sessUser} sessDog={sessDog} />)} />
                <Route path="/dogprofile" render={() => (<DogProfile open={open} sessUser={sessUser} sessDog={sessDog} allDogs={allDogs} friends={friends} getFriends={getFriends} />)} />
-               <Route path="/popular" render={() => (<PopularLocations sessUser={sessUser} sessDog={sessDog} open={open} lat={lat} lng={lng} />)} />
+               <Route path="/popular" render={() => (<PopularLocations sessUser={sessUser} sessDog={sessDog} google={props.google} open={open} center={{ lat: 29.9511, lng: 90.0715 }} zoom={10} />)} />
                <Route path="/signUp" render={() => (<SignUp sessUser={sessUser} sessDog={sessDog} />)} />
             </Switch>
          </div>
