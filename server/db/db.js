@@ -138,6 +138,8 @@ const FriendJoint = sequelize.define('FriendJoint', {
     type: DataTypes.TINYINT,
     allowNull: false,
   },
+}, {
+  tableName: 'Friend_joint',
 });
 
 module.exports = {

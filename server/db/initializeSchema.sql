@@ -41,9 +41,11 @@ CREATE TABLE IF NOT EXISTS Locations(
 );
 
 CREATE TABLE IF NOT EXISTS Friend_joint(
+	id INT NOT NULL AUTO_INCREMENT,
 	id_dog INT NOT NULL,
 	id_dogFriend INT NOT NULL,
 	bool_friend TINYINT(1) NOT NULL,
+	PRIMARY KEY(id),
 	FOREIGN KEY(id_dog) REFERENCES Dogs(id),
 	FOREIGN KEY(id_dogFriend) REFERENCES Dogs(id)
 );

@@ -23,7 +23,27 @@ const addUser = (userId, userInfoObj) => User.update(userInfoObj, { where: { id:
 
 const addFriend = (friendObj) => FriendJoint.create(friendObj);
 
-const getFriends = (id) => FriendJoint.findAll({ where: { id_dog: id } });
+const getFriends = (id) => {
+  FriendJoint.findAll({ where: { id_dog: id } })
+    .then((res) => {
+      if (res.length === 1) {
+        return Dog.findOne({ where: { id: res[0].dataValues.id_dogFriend } });
+      }
+      const data = res.map((val) => {
+        return Dog.findOne({ where: { id: val.dataValues.id_dogFriend } });
+      });
+      Promise.all(data)
+        .then((res) => {
+          const friendData = res.map((friendVal) => {
+            return friendVal.dataValues.dog_name;
+          });
+
+          return friendData;
+        });
+    })
+    .then((res) => [res.dataValues.dog_name])
+    .catch((err) => console.log('getfriends', err));
+};
 
 const unFriend = (dogId, friendId, bool_friend) => {
   FriendJoint.update(bool_friend, {

@@ -24,13 +24,13 @@ function App(props) {
       axios.get('/session')
       .then(response => setSessUser(response.data))
       .catch(err => console.error(err));
-   }, [sessUser]);
+   }, []);
 
    useEffect(() => {
       axios.get('/currentDog')
       .then(response => setSessDog(response.data))
       .catch(err => console.error('could not set session dog: ', err));
-   }, [sessDog]);
+   }, []);
 
    useEffect(() => {
       axios.get('/dogs')
@@ -76,9 +76,10 @@ function App(props) {
    };
 
    const getFriends = (dogId) => {
-      axios.post('/dogfriends', { id: dogId })
-      .then(response => setFriends(response.data))
-      .then((friendList) => setFriends(friendList))
+      console.log('hit getFriends', dogId);
+      axios.post('/dogFriends', { doggyId: dogId })
+      .then(response => console.log('hit getFriends req'))
+      // .then((friendList) => setFriends(friendList))
       .catch(() => console.error('We could not get this dog\'s friends'));
    };
 

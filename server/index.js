@@ -71,13 +71,13 @@ app.get('/currentDog', (req, res) => {
   const userId = req.session.passport.user.id;
   getCurrentDog(userId)
     .then((dog) => res.status(200).send(dog))
-    .catch((err) => res.status(500).send(err));
+    .catch((err) => res.sendStatus(500));
 });
 
 app.get('/users', (req, res) => {
   getUsers()
     .then((list) => res.status(200).send(list))
-    .catch((err) => res.status(500).send(err));
+    .catch((err) => res.sendStatus(500));
 });
 
 app.post('/users', (req, res) => {
@@ -85,14 +85,15 @@ app.post('/users', (req, res) => {
   const userId = req.session.passport.user.id;
   addUser(userId, userInfoObj)
     .then(() => res.sendStatus(201).redirect('/'))
-    .catch((err) => res.status(500).send(err));
+    .catch((err) => res.sendStatus(500));
 });
 
-app.get('/dogFriends', (req, res) => {
-  const { id } = req.body;
-  getFriends(id)
-    .then((list) => res.status(200).send(list))
-    .catch((err) => res.status(500).send(err));
+app.post('/dogFriends', (req, res) => {
+  const { doggyId } = req.body;
+  console.log('/dogFriends', req.body);
+  getFriends(doggyId);
+    // .then((list) => res.status(200).send(list))
+    // .catch((err) => res.sendStatus(500));
 });
 
 app.post('/friends', (req, res) => {
@@ -103,7 +104,7 @@ app.post('/friends', (req, res) => {
   };
   addFriend(friendObj)
     .then(() => res.sendStatus(201))
-    .catch((err) => res.status(500).send(err));
+    .catch((err) => res.sendStatus(500));
 });
 
 app.post('/unfriend', (req, res) => {
@@ -112,20 +113,20 @@ app.post('/unfriend', (req, res) => {
   const bool = 0;
   unFriend(dogId, friendId, bool)
     .then(() => res.sendStatus(201))
-    .catch((err) => res.status(500).send(err));
+    .catch((err) => res.sendStatus(500));
 });
 
 app.get('/loc', (req, res) => {
   getLocs()
     .then((list) => res.status(200).send(list))
-    .catch((err) => res.status(500).send(err));
+    .catch((err) => res.sendStatus(500));
 });
 
 app.post('/loc', (req, res) => {
   const locObj = req.body;
   addLoc(locObj)
     .then(() => res.sendStatus(201))
-    .catch((err) => res.status(500).send(err));
+    .catch((err) => res.sendStatus(500));
 });
 
 app.get('/logout', (req, res) => {
@@ -135,6 +136,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/session', (req, res) => {
+  console.log(req.session.passport.user);
   res.send(req.session.passport.user);
 });
 

@@ -65,8 +65,8 @@ function SignUp({ sessUser, sessDog }) {
                     <input classname='create-desc' onChange={(event) => setDesc(event.target.value)} type="text" placeholder="Description" /><br /><br />
                     <input classname='create' onChange={(event) => setImage(event.target.value)} type="text" placeholder="Image URL" /><br /><br />
                     <Link to='/' id="dude" onClick={() => {
-                        addUserInfo;
-                        addDogInfo;
+                        addUserInfo();
+                        addDogInfo();
                     }}>Create</Link>
                 </div>
             </div>
