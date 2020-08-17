@@ -29,8 +29,13 @@ The page will reload if any edits occur.
 Any lint errors will be displayed in the console.
 
 Here is some documentation on React Hooks:
+
 Intro -> https://reactjs.org/docs/hooks-intro.html
+
 State Hook -> https://reactjs.org/docs/hooks-state.html
+
 Effect Hook -> https://reactjs.org/docs/hooks-effect.html
+
 Rules of Hooks -> https://reactjs.org/docs/hooks-rules.html
+
 Quick Start on React Router -> https://reactrouter.com/web/guides/quick-start
