@@ -10,23 +10,36 @@ import PopularLocations from './PopularLocations.jsx';
 import SignUp from './SignUp.jsx';
 
 function App() {
-   const [ dogs, setDogs ] = useState('');
    const [ lat, setLat ] = useState('');
    const [ lng, setLng ] = useState('');
    const [ sessUser, setSessUser ] = useState('');
    const [ sessDog, setSessDog ] = useState('');
+   const [ dogViews, setDogViews ] = useState('');
+   const [ allDogs, setAllDogs ] = useState('');
+   const [ friends, setFriends ] = useState('');
+   const [ index, setIndex ] = useState(0);
+   const [ dogDisplayInfo, setDogDisplayInfo ] = useState('');
 
    useEffect(() => {
       axios.get('/session')
       .then(response => setSessUser(response.data))
       .catch(err => console.error(err));
-   }, []);
+   }, [sessUser]);
 
-  useEffect(() => {
-    axios.get('/currentDog')
-    .then(response => setSessDog(response.data))
-    .catch(err => console.error('could not set session dog: ', err));
-  });
+   useEffect(() => {
+      axios.get('/currentDog')
+      .then(response => setSessDog(response.data))
+      .catch(err => console.error('could not set session dog: ', err));
+   }, [sessDog]);
+
+   useEffect(() => {
+      axios.get('/dogs')
+      .then((response) => {
+         setAllDogs(response.data);
+         setDogDisplayInfo(response.data[0]);
+      })
+      .catch((err) => console.error(err, 'Could not get all dogs.'));
+   }, []);
 
    useEffect(() => {
       axios.get('/dogs')
@@ -41,7 +54,7 @@ function App() {
                );
             });
          })
-         .then(choices => setDogs(choices))
+         .then(choices => setDogViews(choices))
          .catch(err => console.error(err, 'Could not get all dogs.'));
    }, []);
 
@@ -62,15 +75,22 @@ function App() {
       document.getElementById("mySidenav").style.width = "280px";
    };
 
+   const getFriends = (dogId) => {
+      axios.post('/dogfriends', { id: dogId })
+      .then(response => setFriends(response.data))
+      .then((friendList) => setFriends(friendList))
+      .catch(() => console.error('We could not get this dog\'s friends'));
+   };
+
    return (
       <Router>
-         <Sidebar sessUser={sessUser} sessDog={sessDog} />
+         <Sidebar sessUser={sessUser} sessDog={sessDog} getFriends={getFriends} allDogs={allDogs} />
          <div className='App'>
             <Switch>
-               <Route exact={true} path="/" render={() => (<Choice open={open} sessUser={sessUser} sessDog={sessDog} dogs={dogs} />)} />
+               <Route exact={true} path="/" render={() => (<Choice open={open} sessUser={sessUser} sessDog={sessDog} dogViews={dogViews} allDogs={allDogs} getFriends={getFriends} index={index} setIndex={setIndex} dogDisplayInfo={dogDisplayInfo} setDogDisplayInfo={setDogDisplayInfo} />)} />
                <Route exact path="/login" render={() => (<Login />)} />
                <Route path="/myprofile" render={() => (<MyProfile open={open} sessUser={sessUser} sessDog={sessDog} />)} />
-               <Route path="/dogprofile" render={() => (<DogProfile open={open} sessUser={sessUser} sessDog={sessDog} />)} />
+               <Route path="/dogprofile" render={() => (<DogProfile open={open} sessUser={sessUser} sessDog={sessDog} allDogs={allDogs} friends={friends} getFriends={getFriends} />)} />
                <Route path="/popular" render={() => (<PopularLocations sessUser={sessUser} sessDog={sessDog} open={open} lat={lat} lng={lng} />)} />
                <Route path="/signUp" render={() => (<SignUp sessUser={sessUser} sessDog={sessDog} />)} />
             </Switch>
