@@ -4,7 +4,7 @@ import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "reac
 import Autocomplete from 'react-google-autocomplete';
 import { API_KEY } from '../config.js';
 import axios from 'axios';
-Geocode.setApiKey( "" );
+Geocode.setApiKey( "AIzaSyAIShYGz5mXtO2XtWhaOHlrmDz33fKCnmE" );
 Geocode.enableDebug();
 
 class PopularLocations extends Component {
@@ -79,7 +79,13 @@ class PopularLocations extends Component {
 			}
 		);
 	};
-
+	/**
+	 * Component should only update ( meaning re-render ), when the user selects the address, or drags the pin
+	 *
+	 * @param nextProps
+	 * @param nextState
+	 * @return {boolean}
+	 */
 	shouldComponentUpdate( nextProps, nextState ){
 		if (
 			this.state.markerPosition.lat !== this.props.center.lat ||
@@ -110,6 +116,12 @@ class PopularLocations extends Component {
     this.setState({ clicked: true });
   }
 
+	/**
+	 * Get the city and set the city input value to the one selected
+	 *
+	 * @param addressArray
+	 * @return {string}
+	 */
 	getCity( addressArray ) {
 		let city = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -119,7 +131,12 @@ class PopularLocations extends Component {
 			}
 		}
 	};
-
+	/**
+	 * Get the area and set the area input value to the one selected
+	 *
+	 * @param addressArray
+	 * @return {string}
+	 */
 	getArea( addressArray ) {
 		let area = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -133,7 +150,12 @@ class PopularLocations extends Component {
 			}
 		}
 	};
-
+	/**
+	 * Get the address and set the address input value to the one selected
+	 *
+	 * @param addressArray
+	 * @return {string}
+	 */
 	getState( addressArray ) {
 		let state = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -145,15 +167,29 @@ class PopularLocations extends Component {
 			}
 		}
 	};
-
+	/**
+	 * And function for city,state and address input
+	 * @param event
+	 */
 	onChange( event ) {
 		this.setState({ [event.target.name]: event.target.value });
 	};
-
+	/**
+	 * This Event triggers when the marker window is closed
+	 *
+	 * @param event
+	 */
 	onInfoWindowClose( event ) {
 
 	};
 
+	/**
+	 * When the marker is dragged you get the lat and long using the functions available from event object.
+	 * Use geocode to get the address, city, area and state from the lat and lng positions.
+	 * And then set those values in the state.
+	 *
+	 * @param event
+	 */
 	onMarkerDragEnd( event ) {
 		let newLat = event.latLng.lat(),
 		    newLng = event.latLng.lng();
@@ -186,6 +222,10 @@ class PopularLocations extends Component {
 		);
 	};
 
+	/**
+	 * When the user types an address in the search box
+	 * @param place
+	 */
 	onPlaceSelected( place ) {
 		console.log( 'plc', place );
 		const address = place.formatted_address,
@@ -195,6 +235,7 @@ class PopularLocations extends Component {
 		      state = this.getState( addressArray ),
 		      latValue = place.geometry.location.lat(),
 		      lngValue = place.geometry.location.lng();
+		// Set these values in the state.
 		this.setState({
 			address: ( address ) ? address : '',
 			area: ( area ) ? area : '',
@@ -227,6 +268,7 @@ class PopularLocations extends Component {
 					           defaultZoom={ this.props.zoom }
 					           defaultCenter={{ lat: mapPosition.lat, lng: mapPosition.lng }}
 					>
+						{/* InfoWindow on top of marker */}
 						<InfoWindow
 							onClose={this.onInfoWindowClose}
 							position={{ lat: ( markerPosition.lat + 0.0018 ), lng: markerPosition.lng }}
@@ -235,6 +277,7 @@ class PopularLocations extends Component {
 								<span style={{ padding: 0, margin: 0 }}>{ address }</span>
 							</div>
 						</InfoWindow>
+						{/*Marker*/}
 						<Marker google={this.props.google}
 						        name={'Dolores park'}
 						        draggable={true}
@@ -242,6 +285,7 @@ class PopularLocations extends Component {
 						        position={{ lat: markerPosition.lat, lng: markerPosition.lng }}
 						/>
 						<Marker />
+						{/* For Auto complete Search Box */}
 						<Autocomplete
 							style={{
 								width: '100%',
@@ -280,7 +324,7 @@ class PopularLocations extends Component {
 				</div>
 
 				<AsyncMap
-					googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${""}&libraries=places`}
+					googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${"AIzaSyAIShYGz5mXtO2XtWhaOHlrmDz33fKCnmE"}&libraries=places`}
 					loadingElement={
 						<div style={{ height: `100%` }} />
 					}

@@ -20,16 +20,16 @@ function Choice({ open, sessUser, sessDog, dogViews, allDogs, getFriends, index,
     }
   };
 
-  const addFriend = () => {
-    axios.post('/friends',  {
-      id_dog: sessDog.id,
-      id_friend: dogDisplayInfo.id,
-      bool_friend: 0
-    })
-    .then(() => dislike())
-    .then(() => console.log('this friend was added'))
-    .catch((err) => console.error(err, 'we couldn\'t add this friend'));
-  };
+  // const addFriend = () => {
+  //   axios.post('/friends',  {
+  //     id_dog: sessDog.id,
+  //     id_friend: dogDisplayInfo.id,
+  //     bool_friend: 0
+  //   })
+  //   .then(() => dislike())
+  //   .then(() => console.log('this friend was added'))
+  //   .catch((err) => console.error(err, 'we couldn\'t add this friend'));
+  // };
 
   return (
     <div>
@@ -39,7 +39,7 @@ function Choice({ open, sessUser, sessDog, dogViews, allDogs, getFriends, index,
         <div id='select'>
           <button id='no' onClick={dislike}>No</button>
           <Link to={`/dogprofile/${dogDisplayInfo.id}`} id='view' onClick={() => getFriends(dogDisplayInfo.id)}>View Profile</Link>
-          <button id='yes' onClick={addFriend}>Yes</button>
+          <button id='yes' onClick={dislike}>Yes</button>
         </div>
       </div>
     </div>

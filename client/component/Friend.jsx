@@ -15,7 +15,7 @@ function Friend({ match, data }) {
             <div class='profileInfo'>{`Age: ${dogsProfile.age} years`}</div>
             <div class='profileInfo'>{`Weight: ${dogsProfile.weight} lbs`}</div>
             <div class='profileInfo'>{`Breed: ${dogsProfile.breed}`}</div>
-            <div class='profileInfo'>{`Fixed: ${dogsProfile.fixed}`}</div>
+            <div class='profileInfo'>Fixed: Yes</div>
             <div class='profileInfo'>{`Description: ${dogsProfile.description}`}</div>
           </div>
         )

@@ -11,6 +11,12 @@ const isAccCreated = (googleId) => User.findAll({
   .then((list) => !!list.length)
   .catch((err) => err);
 
+const getUser = (userId) => User.findAll({
+  where: {
+    id: userId,
+  },
+});
+
 const getUsers = () => User.findAll();
 
 const getDogs = () => Dog.findAll();
@@ -20,6 +26,8 @@ const getCurrentDog = (userId) => Dog.findAll({ where: { id_user: userId } });
 const getLocs = () => Location.findAll();
 
 const addUser = (userId, userInfoObj) => User.update(userInfoObj, { where: { id: userId } });
+
+const updateDog = (userId, userInfoObj) => Dog.update(userInfoObj, { where: { id_user: userId } });
 
 const addFriend = (friendObj) => FriendJoint.create(friendObj);
 
@@ -45,14 +53,14 @@ const getFriends = (id) => {
     .catch((err) => console.log('getfriends', err));
 };
 
-const unFriend = (dogId, friendId, bool_friend) => {
-  FriendJoint.update(bool_friend, {
-    where: {
-      id_dog: dogId,
-      id_dogFriend: friendId,
-    },
-  });
-};
+// const unFriend = (dogId, friendId, bool_friend) => {
+//   FriendJoint.update(bool_friend, {
+//     where: {
+//       id_dog: dogId,
+//       id_dogFriend: friendId,
+//     },
+//   });
+// };
 
 const addDog = (dogInfo) => Dog.create(dogInfo);
 
@@ -66,8 +74,9 @@ module.exports = {
   addUser,
   addFriend,
   getFriends,
-  unFriend,
+  updateDog,
   addDog,
   addLoc,
+  getUser,
   getLocs,
 };
