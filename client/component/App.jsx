@@ -9,7 +9,7 @@ import DogProfile from './DogProfile.jsx';
 import PopularLocations from './PopularLocations.jsx';
 import SignUp from './SignUp.jsx';
 
-function App() {
+function App(props) {
    const [ lat, setLat ] = useState('');
    const [ lng, setLng ] = useState('');
    const [ sessUser, setSessUser ] = useState('');
@@ -26,9 +26,15 @@ function App() {
       .catch(err => console.error(err));
    }, []);
 
+   // useEffect(() => {
+   //    axios.get('/myProfileInfo')
+   //       .then(response => setSessUser(response.data[0]))
+   //       .catch(err => console.log(16, err));
+   // }, [])
+
    useEffect(() => {
       axios.get('/currentDog')
-      .then(response => setSessDog(response.data))
+      .then(response => setSessDog(response.data[0]))
       .catch(err => console.error('could not set session dog: ', err));
    }, []);
 
@@ -76,11 +82,10 @@ function App() {
    };
 
    const getFriends = (dogId) => {
-      console.log('hit getFriends', dogId);
-      axios.post('/dogFriends', { doggyId: dogId })
-      .then(response => console.log('hit getFriends req'))
-      // .then((friendList) => setFriends(friendList))
-      .catch(() => console.error('We could not get this dog\'s friends'));
+      // console.log('hit getFriends', dogId);
+      // axios.post('/dogFriends', { doggyId: dogId })
+      // .then(response => setFriends(response.data))
+      // .catch(() => console.error('We could not get this dog\'s friends'));
    };
 
    return (
@@ -92,7 +97,7 @@ function App() {
                <Route exact path="/login" render={() => (<Login />)} />
                <Route path="/myprofile" render={() => (<MyProfile open={open} sessUser={sessUser} sessDog={sessDog} />)} />
                <Route path="/dogprofile" render={() => (<DogProfile open={open} sessUser={sessUser} sessDog={sessDog} allDogs={allDogs} friends={friends} getFriends={getFriends} />)} />
-               <Route path="/popular" render={() => (<PopularLocations sessUser={sessUser} sessDog={sessDog} open={open} lat={lat} lng={lng} />)} />
+               <Route path="/popular" render={() => (<PopularLocations sessUser={sessUser} sessDog={sessDog} google={props.google} open={open} center={{ lat: 29.9511, lng: 90.0715 }} zoom={10} />)} />
                <Route path="/signUp" render={() => (<SignUp sessUser={sessUser} sessDog={sessDog} />)} />
             </Switch>
          </div>

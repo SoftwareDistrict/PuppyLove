@@ -1,4 +1,4 @@
-$mainColor : rgb(165, 134, 199);
+$mainColor : rgb(207, 161, 101);
 $backColor : rgb(50, 49, 66);
 $textBlue : rgb(0, 144, 178);
 $textBlack : rgb(32, 32, 32);
@@ -283,4 +283,13 @@ h3 {
   font-size: 16px;
   margin: 10px 0 10px 340px;
   padding-left: 10px
+}
+
+.map {
+  width: 70vw;
+  height: 60vh;
+  margin-left: 200px;
+  margin-bottom: 20px;
+  border: 5px solid #333;
+  border-radius: 20px;
 }

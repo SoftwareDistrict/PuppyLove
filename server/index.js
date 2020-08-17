@@ -10,7 +10,7 @@ require('./passport/passport');
 // const data = require('../data.json');
 const {
   addUser, getUsers, getDogs,
-  addFriend, unFriend, isAccCreated,
+  addFriend, isAccCreated,
   addDog, addLoc, getLocs, getFriends,
   getCurrentDog,
 } = require('./queries.js');
@@ -60,12 +60,34 @@ app.get('/dogs', (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+// app.get('/myProfileInfo', (req, res) => {
+//   const userId = req.session.passport.user.id;
+//   getUser(userId)
+//     .then((list) => res.send(list))
+//     .catch((err) => res.sendStatus(500));
+// });
+
 app.post('/dogs', (req, res) => {
   const dogInfo = req.body;
   addDog(dogInfo)
     .then(() => res.sendStatus(201))
     .catch((err) => res.status(500).send(err));
 });
+
+// app.post('/updateUserAndDog', (req, res) => {
+//   const userEditObj = req.body.user;
+//   const dogEditObj = req.body.dog;
+//   console.log('dogObj: ', dogEditObj);
+//   const userId = req.session.passport.user.id;
+//   const updateUserObj = null;
+//   addUser(userId, userEditObj)
+//     .then((result) => console.log(result))
+//     .catch((err) => console.log(err));
+//   updateDog(userId, dogEditObj).then((result) => {
+//     res.send({ user: updateUserObj, dog: result.data });
+//   })
+//     .catch((err) => console.log(err));
+// });
 
 app.get('/currentDog', (req, res) => {
   const userId = req.session.passport.user.id;
@@ -91,9 +113,9 @@ app.post('/users', (req, res) => {
 app.post('/dogFriends', (req, res) => {
   const { doggyId } = req.body;
   console.log('/dogFriends', req.body);
-  getFriends(doggyId);
-    // .then((list) => res.status(200).send(list))
-    // .catch((err) => res.sendStatus(500));
+  getFriends(doggyId)
+    .then((list) => res.status(200).send(list))
+    .catch((err) => res.sendStatus(500));
 });
 
 app.post('/friends', (req, res) => {
@@ -107,14 +129,14 @@ app.post('/friends', (req, res) => {
     .catch((err) => res.sendStatus(500));
 });
 
-app.post('/unfriend', (req, res) => {
-  const dogId = req.session.passport.dog;
-  const friendId = req.body;
-  const bool = 0;
-  unFriend(dogId, friendId, bool)
-    .then(() => res.sendStatus(201))
-    .catch((err) => res.sendStatus(500));
-});
+// app.post('/unfriend', (req, res) => {
+//   const dogId = req.session.passport.dog;
+//   const friendId = req.body;
+//   const bool = 0;
+//   unFriend(dogId, friendId, bool)
+//     .then(() => res.sendStatus(201))
+//     .catch((err) => res.sendStatus(500));
+// });
 
 app.get('/loc', (req, res) => {
   getLocs()
@@ -136,7 +158,6 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/session', (req, res) => {
-  console.log(req.session.passport.user);
   res.send(req.session.passport.user);
 });
 
